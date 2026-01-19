@@ -8,6 +8,7 @@ import IntegrationSlide from '@/components/slides/IntegrationSlide';
 import ProjectMgmtSlide from '@/components/slides/ProjectMgmtSlide';
 import CoordinateSlide from '@/components/slides/CoordinateSlide';
 import CloudStorageSlide from '@/components/slides/CloudStorageSlide';
+import DataManagementSlide from '@/components/slides/DataManagementSlide';
 import WebCadSlide from '@/components/slides/WebCadSlide';
 import OutputsSlide from '@/components/slides/OutputsSlide';
 import AdminSlide from '@/components/slides/AdminSlide';
@@ -45,33 +46,38 @@ export default function Home() {
           <CoordinateSlide />
         </SlideLayout>
 
-        {/* Slide 6: Cloud Data Center + File Management (합침) */}
+        {/* Slide 6: Cloud Data Center + File Management */}
         <SlideLayout pageNumber={6} variant="gray">
           <CloudStorageSlide />
         </SlideLayout>
 
-        {/* Slide 7: Web CAD */}
+        {/* Slide 7: Data Management (8.png, 9.png, 10.png) */}
         <SlideLayout pageNumber={7} variant="default">
+          <DataManagementSlide />
+        </SlideLayout>
+
+        {/* Slide 8: Web CAD */}
+        <SlideLayout pageNumber={8} variant="gray">
           <WebCadSlide />
         </SlideLayout>
 
-        {/* Slide 8: Outputs (보고서+데이터 내보내기 합침) */}
-        <SlideLayout pageNumber={8} variant="gray">
+        {/* Slide 9: Outputs (보고서+데이터 내보내기 합침) */}
+        <SlideLayout pageNumber={9} variant="default">
           <OutputsSlide />
         </SlideLayout>
 
-        {/* Slide 9: Admin System (13.png, 14.png) */}
-        <SlideLayout pageNumber={9} variant="default">
+        {/* Slide 10: Admin System */}
+        <SlideLayout pageNumber={10} variant="gray">
           <AdminSlide />
         </SlideLayout>
 
-        {/* Slide 10: Expected Effects */}
-        <SlideLayout pageNumber={10} variant="gray">
+        {/* Slide 11: Expected Effects */}
+        <SlideLayout pageNumber={11} variant="default">
           <ExpectationsSlide />
         </SlideLayout>
 
-        {/* Slide 11: Final Call */}
-        <SlideLayout pageNumber={11} variant="brand">
+        {/* Slide 12: Final Call */}
+        <SlideLayout pageNumber={12} variant="brand">
           <FinalSlide />
         </SlideLayout>
       </div>

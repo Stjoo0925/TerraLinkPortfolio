@@ -10,7 +10,7 @@ export default function Header() {
     const [currentSlide, setCurrentSlide] = useState(1);
     const menuRef = useRef<HTMLDivElement>(null);
 
-    const totalSlides = 11;
+    const totalSlides = 12;
 
     useEffect(() => {
         function handleClickOutside(event: MouseEvent) {
@@ -145,11 +145,12 @@ export default function Header() {
                                 { id: 4, title: '프로젝트 관리' },
                                 { id: 5, title: '좌표계 설정' },
                                 { id: 6, title: '클라우드 센터' },
-                                { id: 7, title: '웹 CAD' },
-                                { id: 8, title: '성과물 관리' },
-                                { id: 9, title: '시스템 관리' },
-                                { id: 10, title: '기대 효과' },
-                                { id: 11, title: '마무리' },
+                                { id: 7, title: '데이터 관리' },
+                                { id: 8, title: '웹 CAD' },
+                                { id: 9, title: '성과물 관리' },
+                                { id: 10, title: '시스템 관리' },
+                                { id: 11, title: '기대 효과' },
+                                { id: 12, title: '마무리' },
                             ].map((slide) => (
                                 <button
                                     key={slide.id}

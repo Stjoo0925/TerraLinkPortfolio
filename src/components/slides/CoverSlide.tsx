@@ -40,7 +40,7 @@ export default function CoverSlide() {
                     marginBottom: '2.5rem',
                     fontSize: '1rem'
                 }}>
-                    스마트 측량 클라우드
+                    SURVEY CLOUD PLATFORM
                 </span>
                 <h1 style={{
                     fontSize: 'clamp(4rem, 8vw, 7.5rem)',
