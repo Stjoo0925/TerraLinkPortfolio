@@ -1,3 +1,0 @@
-/* Header Indicator Styles - appending to globals.css via write_to_file (not ideal, usage replace_file_content is better but file is large) */
-
-/* Actually I'll use replace_file_content to append or insert these styles in the correct place */
