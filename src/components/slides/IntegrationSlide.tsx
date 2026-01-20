@@ -7,11 +7,11 @@ export default function IntegrationSlide() {
 
     return (
         <>
-            <div className="relative h-full overflow-hidden">
+            <div className="relative h-[620px] overflow-hidden">
                 {/* Left - Text & Cards */}
-                <div className="relative z-10 flex flex-col justify-center h-full w-[38%]">
-                    <div className="relative mb-8">
-                        <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 text-white font-bold tracking-wider text-sm mb-4 backdrop-blur-sm border border-white/20">
+                <div className="relative z-10 flex flex-col justify-between h-full w-[40%]">
+                    <div className="relative">
+                        <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-black/10 text-white font-bold tracking-wider text-sm mb-4 backdrop-blur-sm border border-white/20">
                             <Link2 className="w-4 h-4" />
                             PLATFORM SYNERGY
                         </span>
@@ -34,7 +34,7 @@ export default function IntegrationSlide() {
                         ].map((item, idx) => {
                             const Icon = item.icon;
                             return (
-                                <div key={idx} className="flex items-center gap-5 p-5 bg-white/10 backdrop-blur-md rounded-2xl shadow-xl border border-white/10">
+                                <div key={idx} className="flex items-center gap-5 p-5 bg-black/10 backdrop-blur-md rounded-2xl shadow-xl border border-white/10">
                                     <div className={`w-12 h-12 flex items-center justify-center rounded-xl bg-linear-to-br ${item.color} shrink-0 shadow-md`}>
                                         <Icon className="w-5 h-5 text-white" />
                                     </div>
@@ -51,7 +51,7 @@ export default function IntegrationSlide() {
                 {/* Right - Image */}
                 <div
                     className="absolute right-0 top-0 bottom-0 w-[55%]"
-                    style={{ clipPath: 'polygon(12% 0, 100% 0, 100% 100%, 0 100%)' }}
+                    style={{ clipPath: 'polygon(15% 0, 100% 0, 100% 100%, 0 100%)' }}
                 >
                     <img
                         src="/테라링크이미지자료/3.png"

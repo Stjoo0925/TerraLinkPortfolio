@@ -14,7 +14,7 @@ export default function OutputsSlide() {
     return (
         <>
             <div className="flex justify-center mb-10">
-                <div className="relative p-6 px-12 rounded-3xl bg-black/20 backdrop-blur-md border border-white/10 shadow-xl text-center">
+                <div className="relative p-6 px-12 rounded-3xl bg-black/10 backdrop-blur-md border border-white/10 shadow-xl text-center">
                     <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 text-white font-bold tracking-wider text-sm mb-4 backdrop-blur-sm border border-white/20">
                         <Download className="w-4 h-4" />
                         SURVEY EXPORT
@@ -29,12 +29,12 @@ export default function OutputsSlide() {
             {/* Two Column Layout */}
             <div className="grid grid-cols-2 gap-8 mb-8">
                 {/* Left - Report Export */}
-                <div className="bg-black/20 backdrop-blur-md rounded-2xl overflow-hidden shadow-2xl border border-white/10 flex flex-col">
+                <div className="bg-black/10 backdrop-blur-md rounded-2xl overflow-hidden shadow-2xl border border-white/10 flex flex-col">
                     <div className="p-4 flex-1 flex items-center justify-center bg-white/5">
                         <img
                             src="/테라링크이미지자료/11.png"
                             alt="보고서 내보내기"
-                            className="w-full h-auto max-h-[180px] object-contain drop-shadow-2xl"
+                            className="w-full h-auto max-h-[250px] object-contain drop-shadow-2xl"
                         />
                     </div>
                     <div className="p-5">
@@ -51,12 +51,12 @@ export default function OutputsSlide() {
                     </div>
                 </div>
                 {/* Right - Data Export */}
-                <div className="bg-black/20 backdrop-blur-md rounded-2xl overflow-hidden shadow-2xl border border-white/10 flex flex-col">
+                <div className="bg-black/10 backdrop-blur-md rounded-2xl overflow-hidden shadow-2xl border border-white/10 flex flex-col">
                     <div className="p-4 flex-1 flex items-center justify-center bg-white/5">
                         <img
                             src="/테라링크이미지자료/12.png"
                             alt="원시 데이터 내보내기"
-                            className="w-full h-auto max-h-[180px] object-contain drop-shadow-2xl"
+                            className="w-full h-auto max-h-[250px] object-contain drop-shadow-2xl"
                         />
                     </div>
                     <div className="p-5">
@@ -79,7 +79,7 @@ export default function OutputsSlide() {
                 {formats.map((item, idx) => {
                     const Icon = item.icon;
                     return (
-                        <div key={idx} className="flex items-center gap-3 px-6 py-4 bg-black/20 backdrop-blur-md rounded-xl shadow-xl border border-white/10">
+                        <div key={idx} className="flex items-center gap-3 px-6 py-4 bg-black/10 backdrop-blur-md rounded-xl shadow-xl border border-white/10">
                             <div className={`w-10 h-10 rounded-xl bg-linear-to-br ${item.color} flex items-center justify-center shadow-md`}>
                                 <Icon className="w-5 h-5 text-white" />
                             </div>

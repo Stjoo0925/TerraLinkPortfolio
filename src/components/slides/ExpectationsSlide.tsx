@@ -41,12 +41,16 @@ export default function ExpectationsSlide() {
         <>
             {/* Header */}
             <div className="flex justify-center mb-10">
-                <div className="relative p-6 px-12 rounded-3xl bg-white/40 backdrop-blur-md border border-white/40 shadow-xl text-center">
+                <div className="relative p-6 px-12 rounded-3xl bg-white/50 backdrop-blur-md border border-white/40 shadow-xl text-center">
                     <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-green-500/10 text-green-600 font-bold tracking-wider text-sm mb-4">
                         <TrendingUp className="w-4 h-4" />
                         Expected Value
                     </span>
                     <h2 className="mt-4 text-4xl font-bold text-text-main">TerraLink 도입으로 얻는 가치</h2>
+                    <p className="mt-4 text-lg text-text-muted max-w-2xl mx-auto">
+                        업무 효율은 극대화하고 데이터 손실은 원천 차단하여<br />
+                        가장 완벽한 협업 환경을 제공합니다.
+                    </p>
                 </div>
             </div>
 
@@ -57,26 +61,28 @@ export default function ExpectationsSlide() {
                     return (
                         <div
                             key={idx}
-                            className="group relative bg-white rounded-[24px] p-8 shadow-[0_8px_30px_rgba(0,0,0,0.08)] border border-slate-100 overflow-hidden"
+                            className="group relative bg-white/50 backdrop-blur-md rounded-[24px] p-8 shadow-[0_8px_30px_rgba(0,0,0,0.08)] border border-white/40 overflow-hidden text-center flex flex-col items-center"
                         >
-                            {/* Icon */}
-                            <div className={`w-14 h-14 rounded-2xl bg-linear-to-br ${stat.gradient} flex items-center justify-center mb-6 shadow-lg`}>
-                                <Icon className="w-7 h-7 text-white" />
-                            </div>
+                            <div className="flex items-center justify-center gap-5 mb-6">
+                                {/* Icon */}
+                                <div className={`w-14 h-14 rounded-2xl bg-linear-to-br ${stat.gradient} flex items-center justify-center shadow-lg shrink-0`}>
+                                    <Icon className="w-7 h-7 text-white" />
+                                </div>
 
-                            {/* Value */}
-                            <div className="flex items-baseline mb-4">
-                                <span className={`text-[4.5rem] font-black bg-clip-text text-transparent tracking-tighter leading-none bg-linear-to-r ${stat.gradient}`}>
-                                    {stat.value}
-                                </span>
-                                <span className={`text-[2rem] font-bold bg-clip-text text-transparent bg-linear-to-r ${stat.gradient} ml-1`}>
-                                    {stat.unit}
-                                </span>
+                                {/* Value */}
+                                <div className="flex items-baseline">
+                                    <span className={`text-[4.5rem] font-black bg-clip-text text-transparent tracking-tighter leading-none bg-linear-to-r ${stat.gradient}`}>
+                                        {stat.value}
+                                    </span>
+                                    <span className={`text-[2rem] font-bold bg-clip-text text-transparent bg-linear-to-r ${stat.gradient} ml-1`}>
+                                        {stat.unit}
+                                    </span>
+                                </div>
                             </div>
 
                             {/* Label */}
                             <h3 className="text-xl font-bold text-text-main mb-2">{stat.label}</h3>
-                            <p className="text-sm text-text-muted leading-relaxed">{stat.desc}</p>
+                            <p className="text-sm text-text-muted leading-relaxed break-keep">{stat.desc}</p>
                         </div>
                     );
                 })}
@@ -87,7 +93,7 @@ export default function ExpectationsSlide() {
                 {benefits.map((item, idx) => {
                     const Icon = item.icon;
                     return (
-                        <div key={idx} className="flex items-center gap-4 p-5 bg-linear-to-br from-slate-50 to-white rounded-xl border border-slate-100">
+                        <div key={idx} className="flex items-center gap-4 p-5 bg-white/50 backdrop-blur-md rounded-xl border border-white/40 shadow-sm">
                             <div className={`w-12 h-12 rounded-xl bg-linear-to-br ${item.color} flex items-center justify-center shadow-md shrink-0`}>
                                 <Icon className="w-5 h-5 text-white" />
                             </div>

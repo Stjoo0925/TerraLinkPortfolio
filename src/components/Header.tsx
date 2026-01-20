@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
-import { downloadPDF, downloadPPT } from '@/lib/download';
+import { downloadPDF } from '@/lib/download';
 
 export default function Header() {
     const [isOpen, setIsOpen] = useState(false);
@@ -62,13 +62,8 @@ export default function Header() {
     };
 
     const handleDownloadPPT = async () => {
-        setIsDownloading('ppt');
-        try {
-            await downloadPPT();
-        } finally {
-            setIsDownloading(null);
-            setIsOpen(false);
-        }
+        alert('추후 제공 예정입니다.');
+        setIsOpen(false);
     };
 
     return (

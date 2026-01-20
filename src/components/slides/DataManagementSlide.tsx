@@ -15,7 +15,7 @@ export default function DataManagementSlide() {
         <>
 
             <div className="flex justify-between items-end mb-8">
-                <div className="relative p-6 rounded-3xl bg-white/40 backdrop-blur-md border border-white/40 shadow-sm">
+                <div className="">
                     <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-violet-500/10 text-violet-600 font-bold tracking-wider text-sm mb-4">
                         <Database className="w-4 h-4" />
                         DATA MANAGEMENT
@@ -31,7 +31,7 @@ export default function DataManagementSlide() {
             {/* Three Column Layout with Images */}
             <div className="grid grid-cols-3 gap-8">
                 {/* Column 1 - 현황/속성 */}
-                <div className="bg-white rounded-2xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.08)] border border-slate-100 flex flex-col">
+                <div className="bg-white/50 backdrop-blur-md rounded-2xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.08)] border border-white/40 flex flex-col">
                     <div className="p-4 flex-1 flex items-center justify-center bg-slate-50/50">
                         <img
                             src="/테라링크이미지자료/8.png"
@@ -54,7 +54,7 @@ export default function DataManagementSlide() {
                 </div>
 
                 {/* Column 2 - 성과 개요 */}
-                <div className="bg-white rounded-2xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.08)] border border-slate-100 flex flex-col">
+                <div className="bg-white/50 backdrop-blur-md rounded-2xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.08)] border border-white/40 flex flex-col">
                     <div className="p-4 flex-1 flex items-center justify-center bg-slate-50/50">
                         <img
                             src="/테라링크이미지자료/9.png"
@@ -77,7 +77,7 @@ export default function DataManagementSlide() {
                 </div>
 
                 {/* Column 3 - 기준점 */}
-                <div className="bg-white rounded-2xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.08)] border border-slate-100 flex flex-col">
+                <div className="bg-white/50 backdrop-blur-md rounded-2xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.08)] border border-white/40 flex flex-col">
                     <div className="p-4 flex-1 flex items-center justify-center bg-slate-50/50">
                         <img
                             src="/테라링크이미지자료/10.png"
@@ -105,7 +105,7 @@ export default function DataManagementSlide() {
                 {bottomFeatures.map((item, idx) => {
                     const Icon = item.icon;
                     return (
-                        <div key={idx} className="bg-white rounded-xl p-4 shadow-[0_4px_15px_rgba(0,0,0,0.06)] text-center border border-slate-100">
+                        <div key={idx} className="bg-white/50 backdrop-blur-md rounded-xl p-4 shadow-[0_4px_15px_rgba(0,0,0,0.06)] text-center border border-white/40">
                             <div className={`w-10 h-10 flex items-center justify-center bg-linear-to-br ${item.color} rounded-xl mx-auto mb-2.5 shadow-md`}>
                                 <Icon className="w-4 h-4 text-white" />
                             </div>
