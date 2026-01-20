@@ -1,95 +1,65 @@
 'use client';
 
 import React from 'react';
+import { MapPin } from 'lucide-react';
 
 export default function CoordinateSlide() {
+    const coordinateSystems = [
+        { code: 'UTM-K', name: 'Korea 2000 / Unified CS', desc: '대한민국 통합 좌표계', color: 'from-brand-blue to-brand-cyan' },
+        { code: 'EPSG:5186', name: 'Korea 2000 / Central Belt', desc: '중부원점 좌표계', color: 'from-emerald-500 to-teal-500' },
+        { code: 'EPSG:5187', name: 'Korea 2000 / East Belt', desc: '동부원점 좌표계', color: 'from-violet-500 to-purple-500' }
+    ];
+
     return (
-        <div className="grid-2" style={{ gap: '4rem' }}>
-            {/* Left - Content */}
-            <div>
-                <span className="subtitle" style={{
-                    background: 'linear-gradient(135deg, rgba(0, 92, 154, 0.1) 0%, rgba(77, 168, 199, 0.1) 100%)',
-                    padding: '10px 20px',
-                    borderRadius: '100px'
-                }}>
-                    COORDINATE SYSTEM
-                </span>
-                <h2 style={{ marginTop: '1rem' }}>다양한 좌표계를<br />자유롭게 설정</h2>
-                <p style={{ marginBottom: '2rem', fontSize: '1.1rem' }}>
-                    프로젝트별로 좌표계를 설정하여 데이터의 일관성을 유지하고,
-                    팀 전체가 동일한 기준으로 작업할 수 있습니다.
-                </p>
+        <>
+            <div className="relative h-full overflow-hidden">
+                {/* Left - Text & Cards */}
+                <div className="relative z-10 flex flex-col justify-center h-full w-[40%]">
+                    <div className="relative p-8 rounded-3xl bg-white/40 backdrop-blur-lg border border-white/40 shadow-2xl">
+                        <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-cyan-500/10 text-cyan-600 font-bold tracking-wider text-sm mb-4">
+                            <MapPin className="w-4 h-4" />
+                            COORDINATE SYSTEM
+                        </span>
+                        <h2 className="mt-4 text-4xl font-bold text-text-main leading-tight">
+                            다양한 좌표계를
+                            <br />
+                            <span className="text-brand-blue">자유롭게 설정</span>
+                        </h2>
+                        <p className="mt-5 text-base text-text-muted leading-relaxed">
+                            프로젝트별로 좌표계를 설정하여
+                            <br />
+                            팀 전체가 동일한 기준으로 작업합니다.
+                        </p>
+                    </div>
 
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                    {[
-                        { code: 'UTM-K', name: 'Korea 2000 / Unified CS', desc: '대한민국 통합 좌표계' },
-                        { code: 'EPSG:5186', name: 'Korea 2000 / Central Belt', desc: '중부원점 좌표계' },
-                        { code: 'EPSG:5187', name: 'Korea 2000 / East Belt', desc: '동부원점 좌표계' }
-                    ].map((item, idx) => (
-                        <div key={idx} style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '1rem',
-                            padding: '1.25rem',
-                            background: 'white',
-                            borderRadius: '14px',
-                            boxShadow: '0 4px 15px rgba(0, 0, 0, 0.06)',
-                            border: '1px solid rgba(0, 0, 0, 0.04)'
-                        }}>
-                            <div style={{
-                                padding: '8px 14px',
-                                background: 'linear-gradient(135deg, #005c9a 0%, #4da8c7 100%)',
-                                borderRadius: '8px',
-                                color: 'white',
-                                fontWeight: 700,
-                                fontSize: '0.85rem',
-                                flexShrink: 0
-                            }}>
-                                {item.code}
+                    <div className="flex flex-col gap-4">
+                        {coordinateSystems.map((item, idx) => (
+                            <div key={idx} className="flex items-center gap-4 p-5 bg-white rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.06)] border border-slate-100">
+                                <div className={`px-3 py-2 bg-linear-to-br ${item.color} rounded-xl text-white font-bold text-sm shrink-0 shadow-md`}>
+                                    {item.code}
+                                </div>
+                                <div>
+                                    <h4 className="font-bold text-text-main mb-0.5">{item.name}</h4>
+                                    <p className="text-sm text-text-muted">{item.desc}</p>
+                                </div>
                             </div>
-                            <div>
-                                <h4 style={{ fontSize: '1rem', marginBottom: '0.2rem' }}>{item.name}</h4>
-                                <p style={{ fontSize: '0.9rem', marginBottom: 0 }}>{item.desc}</p>
-                            </div>
-                        </div>
-                    ))}
+                        ))}
+                    </div>
                 </div>
-            </div>
 
-            {/* Right - Image */}
-            <div style={{ position: 'relative' }}>
-                <div style={{
-                    position: 'absolute',
-                    top: '10%',
-                    right: '5%',
-                    width: '80%',
-                    height: '80%',
-                    background: 'linear-gradient(135deg, rgba(0, 92, 154, 0.15) 0%, rgba(77, 168, 199, 0.1) 100%)',
-                    borderRadius: '24px',
-                    filter: 'blur(40px)',
-                    zIndex: 0
-                }} />
-                <div style={{
-                    position: 'relative',
-                    zIndex: 1,
-                    background: '#1a1a2e',
-                    borderRadius: '20px',
-                    padding: '12px',
-                    boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.35)'
-                }}>
+                {/* Right - Image */}
+                <div
+                    className="absolute right-0 top-0 bottom-0 w-[58%]"
+                    style={{ clipPath: 'polygon(12% 0, 100% 0, 100% 100%, 0 100%)' }}
+                >
                     <img
                         src="/테라링크이미지자료/6.png"
                         alt="좌표계 설정 화면"
-                        style={{
-                            width: '100%',
-                            height: 'auto',
-                            minHeight: '360px',
-                            objectFit: 'cover',
-                            borderRadius: '12px'
-                        }}
+                        className="w-full h-full object-cover"
                     />
+                    <div className="absolute inset-0 bg-linear-to-r from-[#f1f5f9]/20 to-transparent pointer-events-none" />
                 </div>
             </div>
-        </div>
+        </>
     );
 }

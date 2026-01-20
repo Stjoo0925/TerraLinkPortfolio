@@ -42,8 +42,9 @@ export default function Header() {
     const scrollToSlide = (slideNum: number) => {
         const wrapper = document.querySelector('.scroll-wrapper');
         if (wrapper) {
+            const slideWidth = wrapper.clientWidth;
             wrapper.scrollTo({
-                left: (slideNum - 1) * window.innerWidth,
+                left: (slideNum - 1) * slideWidth,
                 behavior: 'smooth'
             });
         }
@@ -71,32 +72,31 @@ export default function Header() {
     };
 
     return (
-        <header className="header no-print">
+        <header className="fixed top-0 left-0 right-0 h-16 bg-white/90 backdrop-blur-[20px] border-b border-black/5 flex items-center justify-between px-10 z-1000 print:hidden">
             <button
                 onClick={() => scrollToSlide(1)}
-                className="header-logo"
-                style={{ background: 'none', border: 'none', cursor: 'pointer' }}
+                className="text-xl font-black text-brand-blue tracking-tighter cursor-pointer"
             >
                 TerraLink
             </button>
 
-            <div className="header-actions">
+            <div className="flex items-center gap-4">
                 {/* Navigation */}
-                <div className="header-nav-compact">
+                <div className="flex items-center gap-2 bg-bg-gray px-4 py-2 rounded-full">
                     <button
-                        className={`nav-arrow ${currentSlide === 1 ? 'disabled' : ''}`}
+                        className={`w-8 h-8 flex items-center justify-center text-text-main rounded-full transition-all text-sm hover:bg-black/5 ${currentSlide === 1 ? 'opacity-30 pointer-events-none' : ''}`}
                         onClick={() => scrollToSlide(currentSlide - 1)}
                         disabled={currentSlide === 1}
                     >
                         <i className="fas fa-chevron-left"></i>
                     </button>
-                    <span className="nav-counter">
-                        <span className="nav-current">{String(currentSlide).padStart(2, '0')}</span>
-                        <span style={{ margin: '0 4px', opacity: 0.4 }}>/</span>
+                    <span className="text-sm font-semibold text-text-muted min-w-[50px] text-center">
+                        <span className="text-text-main font-bold">{String(currentSlide).padStart(2, '0')}</span>
+                        <span className="mx-1 opacity-40">/</span>
                         <span>{String(totalSlides).padStart(2, '0')}</span>
                     </span>
                     <button
-                        className={`nav-arrow ${currentSlide === totalSlides ? 'disabled' : ''}`}
+                        className={`w-8 h-8 flex items-center justify-center text-text-main rounded-full transition-all text-sm hover:bg-black/5 ${currentSlide === totalSlides ? 'opacity-30 pointer-events-none' : ''}`}
                         onClick={() => scrollToSlide(currentSlide + 1)}
                         disabled={currentSlide === totalSlides}
                     >
@@ -105,39 +105,39 @@ export default function Header() {
                 </div>
 
                 {/* Menu */}
-                <div className="header-menu" ref={menuRef}>
+                <div className="relative" ref={menuRef}>
                     <button
-                        className="hamburger-btn"
+                        className="w-11 h-11 flex items-center justify-center bg-transparent border-none cursor-pointer rounded-xl transition-all hover:bg-bg-gray"
                         onClick={() => setIsOpen(!isOpen)}
                         aria-label="메뉴 열기"
                     >
-                        <span className={`hamburger-icon ${isOpen ? 'open' : ''}`}>
-                            <span></span>
-                            <span></span>
-                            <span></span>
+                        <span className="w-5 h-[14px] flex flex-col justify-between">
+                            <span className={`block w-full h-0.5 bg-text-main rounded-[1px] transition-all duration-250 ${isOpen ? 'rotate-45 translate-x-1 translate-y-1' : ''}`}></span>
+                            <span className={`block w-full h-0.5 bg-text-main rounded-[1px] transition-all duration-250 ${isOpen ? 'opacity-0' : ''}`}></span>
+                            <span className={`block w-full h-0.5 bg-text-main rounded-[1px] transition-all duration-250 ${isOpen ? '-rotate-45 translate-x-1 -translate-y-1' : ''}`}></span>
                         </span>
                     </button>
 
                     {isOpen && (
-                        <div className="dropdown-menu">
+                        <div className="absolute top-[calc(100%+8px)] right-0 w-[240px] bg-white rounded-2xl shadow-xl border border-border-light p-2 z-1001">
                             <button
                                 onClick={handleDownloadPDF}
-                                className="dropdown-item"
+                                className="flex items-center gap-3 w-full p-3 bg-transparent border-none text-sm font-medium text-text-main rounded-xl cursor-pointer transition-all hover:bg-bg-gray disabled:opacity-50"
                                 disabled={isDownloading !== null}
                             >
-                                <i className="fas fa-file-pdf"></i>
+                                <i className="fas fa-file-pdf w-5 text-text-muted"></i>
                                 {isDownloading === 'pdf' ? 'PDF 생성 중...' : 'PDF 다운로드'}
                             </button>
                             <button
                                 onClick={handleDownloadPPT}
-                                className="dropdown-item"
+                                className="flex items-center gap-3 w-full p-3 bg-transparent border-none text-sm font-medium text-text-main rounded-xl cursor-pointer transition-all hover:bg-bg-gray disabled:opacity-50"
                                 disabled={isDownloading !== null}
                             >
-                                <i className="fas fa-file-powerpoint"></i>
+                                <i className="fas fa-file-powerpoint w-5 text-text-muted"></i>
                                 {isDownloading === 'ppt' ? 'PPT 생성 중...' : 'PPT 다운로드'}
                             </button>
-                            <div className="dropdown-divider"></div>
-                            <div className="dropdown-label">슬라이드 이동</div>
+                            <div className="h-px bg-border-light my-2"></div>
+                            <div className="px-3.5 pt-2.5 pb-1.5 text-[11px] font-bold text-text-muted uppercase tracking-wider">슬라이드 이동</div>
                             {[
                                 { id: 1, title: '표지' },
                                 { id: 2, title: '시장 니즈' },
@@ -155,9 +155,9 @@ export default function Header() {
                                 <button
                                     key={slide.id}
                                     onClick={() => scrollToSlide(slide.id)}
-                                    className="dropdown-item"
+                                    className="flex items-center gap-3 w-full p-3 bg-transparent border-none text-sm font-medium text-text-main rounded-xl cursor-pointer transition-all hover:bg-bg-gray"
                                 >
-                                    <span className="slide-num">{String(slide.id).padStart(2, '0')}</span>
+                                    <span className="font-bold text-text-muted min-w-[24px]">{String(slide.id).padStart(2, '0')}</span>
                                     {slide.title}
                                 </button>
                             ))}

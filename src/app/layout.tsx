@@ -1,6 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import '@fortawesome/fontawesome-free/css/all.min.css';
+import { Inter } from "next/font/google";
 import Header from "@/components/Header";
+
+const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "TerraLink - Smart Surveying Cloud",
@@ -15,7 +19,7 @@ export default function RootLayout({
   return (
     <html lang="ko">
       <head>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+
       </head>
       <body>
         <Header />

@@ -3,90 +3,59 @@
 import React from 'react';
 
 export default function CoverSlide() {
-    return (
-        <div style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            justifyContent: 'center',
-            textAlign: 'center',
-            height: '100%',
-            position: 'relative',
-            width: '100%',
-            zIndex: 10
-        }}>
-            {/* Dynamic Background Elements */}
-            <div style={{
-                position: 'absolute',
-                top: '50%',
-                left: '50%',
-                transform: 'translate(-50%, -50%)',
-                width: '60vw',
-                height: '60vw',
-                background: 'radial-gradient(circle, rgba(0, 92, 154, 0.08) 0%, rgba(255, 255, 255, 0) 70%)',
-                zIndex: -1,
-                pointerEvents: 'none'
-            }} />
 
-            <div className="fade-up">
-                <span className="subtitle" style={{
-                    background: 'rgba(255, 255, 255, 0.9)',
-                    color: 'var(--brand-blue)',
-                    padding: '12px 28px',
-                    borderRadius: '100px',
-                    backdropFilter: 'blur(20px)',
-                    boxShadow: '0 4px 25px rgba(0, 92, 154, 0.15)',
-                    border: '1px solid rgba(0, 92, 154, 0.1)',
-                    marginBottom: '2.5rem',
-                    fontSize: '1rem'
-                }}>
-                    SURVEY CLOUD PLATFORM
-                </span>
-                <h1 style={{
-                    fontSize: 'clamp(4rem, 8vw, 7.5rem)',
-                    background: 'linear-gradient(135deg, #005c9a 0%, #4da8c7 100%)',
-                    WebkitBackgroundClip: 'text',
-                    WebkitTextFillColor: 'transparent',
-                    backgroundClip: 'text',
-                    marginTop: '0',
-                    marginBottom: '2rem',
-                    letterSpacing: '-0.04em',
-                    lineHeight: 1.1,
-                    filter: 'drop-shadow(0 4px 10px rgba(0, 92, 154, 0.2))'
-                }}>TerraLink</h1>
-                <p className="lead" style={{
-                    marginBottom: '3.5rem',
-                    maxWidth: '680px',
-                    fontSize: '1.5rem',
-                    color: '#475569',
-                    lineHeight: 1.6
-                }}>
-                    현장 측량부터 클라우드 데이터 관리까지<br />
-                    <span style={{
-                        color: 'var(--brand-blue)',
-                        fontWeight: 700,
-                        background: 'linear-gradient(120deg, rgba(0,92,154,0.1) 0%, rgba(0,92,154,0.1) 100%)',
-                        backgroundRepeat: 'no-repeat',
-                        backgroundSize: '100% 40%',
-                        backgroundPosition: '0 90%'
-                    }}>TerraSurvey 2025</span>와 함께하는 완벽한 워크플로우
-                </p>
-                <a
-                    href="https://terra-link.co.kr"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="btn-primary"
-                    style={{
-                        background: 'linear-gradient(135deg, #005c9a 0%, #004a7c 100%)',
-                        boxShadow: '0 20px 40px rgba(0, 92, 154, 0.3)',
-                        padding: '20px 56px',
-                        fontSize: '1.25rem',
-                        borderRadius: '16px',
-                        border: '1px solid rgba(255,255,255,0.1)'
-                    }}
-                >
-                    자세히 보기 <i className="fas fa-arrow-right" style={{ marginLeft: '12px' }}></i>
-                </a>
+    return (
+        <div className="h-full w-full relative flex items-center pl-10 lg:pl-[120px] pr-12 overflow-hidden">
+            {/* Background Image Section - Skewed & Sharper Blend */}
+            <div className="absolute right-0 top-0 w-[55%] h-full -skew-x-12 origin-bottom translate-x-20 -z-10 overflow-hidden group border-l border-white/5">
+                {/* Counter Skew Container */}
+                <div className="absolute inset-0 skew-x-12 scale-125 origin-bottom">
+                    <div className="relative w-full h-full">
+                        {/* Image - Sharper, Less Blur */}
+                        <img
+                            src="/테라링크이미지자료/terralink_cover_bg.png"
+                            alt="TerraLink Platform"
+                            className="w-full h-full object-cover object-left opacity-90 mix-blend-normal grayscale-0 group-hover:scale-105 transition-all duration-1000 ease-out"
+                        />
+                        {/* Blue Tint Overlay (Instead of blur/mix-blend-overlay which might look blurry) */}
+                        <div className="absolute inset-0 bg-brand-blue/10 mix-blend-multiply" />
+
+                        {/* Gradient Mask for Smooth Transition */}
+                        <div className="absolute inset-0 bg-linear-to-r from-brand-blue via-brand-blue/50 to-transparent" />
+                    </div>
+                </div>
+            </div>
+
+            {/* Reduced Blur Decorative Element */}
+            <div className="absolute right-[5%] bottom-[5%] w-[700px] h-[700px] bg-[radial-gradient(circle,rgba(255,255,255,0.05)_0%,transparent_70%)] blur-2xl -z-10" />
+
+            <div className="max-w-5xl z-10 fade-up">
+                <div className="relative p-10 lg:p-14 rounded-[3rem] bg-white/5 backdrop-blur-md border border-white/10 shadow-2xl">
+                    {/* Tagline - White style */}
+                    <div className="flex items-center gap-3 mb-10">
+                        <span className="px-3.5 py-1.5 bg-white/10 text-white text-[0.8rem] font-bold tracking-[0.2em] uppercase rounded-sm border border-white/20">
+                            Survey Cloud Platform
+                        </span>
+                    </div>
+
+                    {/* Main Title - Massive & Clean - Cyan Accents */}
+                    <h1 className="text-[6.5rem] lg:text-[9.5rem] font-black leading-[0.85] tracking-tighter text-white mb-12 -ml-1 select-none">
+                        Terra<span className="text-brand-cyan">Link</span>
+                        <span className="text-brand-cyan leading-none">.</span>
+                    </h1>
+
+                    {/* Description - Modern Typography */}
+                    <p className="text-2xl lg:text-[2.2rem] text-white/90 font-light leading-snug max-w-3xl tracking-tight">
+                        현장과 사무실을 잇는<br />
+                        <span className="text-white font-bold">가장 완벽한 디지털 워크플로우</span>
+                    </p>
+                </div>
+
+                {/* Bottom Info / Signature */}
+                <div className="mt-32 flex items-center gap-4 text-xs lg:text-sm text-white/40 font-mono tracking-[0.15em]">
+                    <div className="w-12 h-px bg-white/30" />
+                    <span>PUBLISHED BY YUSCON</span>
+                </div>
             </div>
         </div>
     );

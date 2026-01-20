@@ -1,136 +1,70 @@
 'use client';
 
 import React from 'react';
+import { Crosshair, Calculator, FileOutput, Settings, Info } from 'lucide-react';
 
 export default function CustomFeaturesSlide() {
     const features = [
         {
-            icon: 'fas fa-vector-square',
+            icon: Crosshair,
             title: '맞춤형 좌표계 설정',
-            desc: 'UTM-K, EPSG 등 다양한 좌표계를 프로젝트별로 자유롭게 설정하여 데이터 통일성을 보장합니다.'
+            desc: 'UTM-K, EPSG 등 다양한 좌표계를 프로젝트별로 자유롭게 설정하여 데이터 통일성을 보장합니다.',
+            color: 'from-brand-blue to-brand-cyan'
         },
         {
-            icon: 'fas fa-calculator',
+            icon: Calculator,
             title: '자동 면적/체적 계산',
-            desc: '관측 데이터를 기반으로 면적 및 체적을 자동으로 계산하여 수작업 오류를 방지합니다.'
+            desc: '관측 데이터를 기반으로 면적 및 체적을 자동으로 계산하여 수작업 오류를 방지합니다.',
+            color: 'from-emerald-500 to-teal-400'
         },
         {
-            icon: 'fas fa-file-export',
+            icon: FileOutput,
             title: '다양한 포맷 내보내기',
-            desc: 'DXF, CSV, PDF 등 필요한 형식으로 데이터를 손쉽게 내보내고 공유할 수 있습니다.'
+            desc: 'DXF, CSV, PDF 등 필요한 형식으로 데이터를 손쉽게 내보내고 공유할 수 있습니다.',
+            color: 'from-violet-500 to-purple-400'
         }
     ];
 
     return (
-        <div style={{ height: '100%', display: 'flex', flexDirection: 'column' }}>
+        <div className="h-full flex flex-col relative">
             {/* Header */}
-            <div style={{ marginBottom: '32px' }}>
-                <span className="label-tag" style={{ marginBottom: '16px', display: 'inline-block' }}>
-                    커스터마이징
+            <div className="mb-10">
+                <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-linear-to-r from-fuchsia-500/10 to-pink-500/10 text-fuchsia-600 font-bold tracking-wider text-sm mb-4">
+                    <Settings className="w-4 h-4" />
+                    Customization
                 </span>
-                <h2 className="title-section">
-                    현장에 맞는
-                    <br />
-                    최적의 설정을 지원합니다
+                <h2 className="text-4xl font-bold text-text-main leading-tight">
+                    현장에 맞는<br />
+                    <span className="text-brand-blue">최적의 설정</span>을 지원합니다
                 </h2>
             </div>
 
             {/* Feature List */}
-            <div style={{
-                flex: 1,
-                display: 'flex',
-                flexDirection: 'column',
-                gap: '20px'
-            }}>
-                {features.map((feature, idx) => (
-                    <div
-                        key={idx}
-                        className="card"
-                        style={{
-                            flex: 1,
-                            display: 'flex',
-                            alignItems: 'center',
-                            gap: '24px',
-                            padding: '24px 28px'
-                        }}
-                    >
-                        {/* Icon */}
-                        <div style={{
-                            width: '64px',
-                            height: '64px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            background: 'var(--color-accent-soft)',
-                            borderRadius: '16px',
-                            flexShrink: 0
-                        }}>
-                            <i
-                                className={feature.icon}
-                                style={{
-                                    fontSize: '26px',
-                                    color: 'var(--color-accent)'
-                                }}
-                            ></i>
-                        </div>
+            <div className="flex-1 flex flex-col gap-5">
+                {features.map((feature, idx) => {
+                    const Icon = feature.icon;
+                    return (
+                        <div
+                            key={idx}
+                            className="group flex-1 flex items-center gap-6 p-6 bg-white rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.06)] border border-slate-100"
+                        >
+                            {/* Icon */}
+                            <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${feature.color} flex items-center justify-center shrink-0 shadow-lg`}>
+                                <Icon className="w-8 h-8 text-white" />
+                            </div>
 
-                        {/* Content */}
-                        <div style={{ flex: 1 }}>
-                            <h3 style={{
-                                fontSize: '18px',
-                                fontWeight: 600,
-                                color: 'var(--color-primary)',
-                                marginBottom: '8px',
-                                letterSpacing: '-0.01em'
-                            }}>
-                                {feature.title}
-                            </h3>
-                            <p style={{
-                                fontSize: '14px',
-                                color: 'var(--color-muted)',
-                                lineHeight: 1.6
-                            }}>
-                                {feature.desc}
-                            </p>
+                            {/* Content */}
+                            <div className="flex-1">
+                                <h3 className="text-lg font-bold text-text-main mb-2">
+                                    {feature.title}
+                                </h3>
+                                <p className="text-base text-text-muted leading-relaxed">
+                                    {feature.desc}
+                                </p>
+                            </div>
                         </div>
-
-                        {/* Arrow */}
-                        <div style={{
-                            width: '36px',
-                            height: '36px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            background: 'var(--color-surface)',
-                            borderRadius: '50%',
-                            flexShrink: 0
-                        }}>
-                            <i
-                                className="fas fa-chevron-right"
-                                style={{
-                                    fontSize: '12px',
-                                    color: 'var(--color-secondary)'
-                                }}
-                            ></i>
-                        </div>
-                    </div>
-                ))}
-            </div>
-
-            {/* Bottom Note */}
-            <div style={{
-                marginTop: '24px',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '12px',
-                padding: '16px 20px',
-                background: 'var(--color-surface)',
-                borderRadius: '12px'
-            }}>
-                <i className="fas fa-info-circle" style={{ color: 'var(--color-accent)', fontSize: '16px' }}></i>
-                <p style={{ fontSize: '13px', color: 'var(--color-muted)' }}>
-                    모든 설정은 프로젝트별로 저장되어 팀원들과 자동으로 동기화됩니다.
-                </p>
+                    );
+                })}
             </div>
         </div>
     );

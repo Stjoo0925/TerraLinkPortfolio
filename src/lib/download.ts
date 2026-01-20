@@ -1,99 +1,94 @@
+import { toPng } from 'html-to-image';
 import jsPDF from 'jspdf';
-import html2canvas from 'html2canvas';
 import PptxGenJS from 'pptxgenjs';
 
-// 슬라이드 정보
-const slideData = [
-  { id: 1, title: '표지', path: '/' },
-  { id: 2, title: '시장 니즈', path: '/slides/2' },
-  { id: 3, title: '플랫폼 연동', path: '/slides/3' },
-  { id: 4, title: '커스텀 기능', path: '/slides/4' },
-  { id: 5, title: '프로젝트 관리', path: '/slides/5' },
-  { id: 6, title: '클라우드 센터', path: '/slides/6' },
-  { id: 7, title: '현황 모니터링', path: '/slides/7' },
-  { id: 8, title: '성과물 도출', path: '/slides/8' },
-  { id: 9, title: '문서 자동화', path: '/slides/9' },
-  { id: 10, title: '기대 효과', path: '/slides/10' },
-  { id: 11, title: '마무리', path: '/slides/11' },
-];
+// ... (slideData definition)
 
 export async function downloadPDF() {
-  const pdf = new jsPDF('l', 'mm', 'a4');
-  const pdfWidth = 297; // A4 가로
-  const pdfHeight = 210; // A4 세로
-
-  // 현재 페이지의 슬라이드 요소 캡처
-  const slideElement = document.querySelector('.slide') as HTMLElement;
+  const slides = document.querySelectorAll('.pdf-target');
   
-  if (!slideElement) {
-    console.error('슬라이드 요소를 찾을 수 없습니다.');
+  if (!slides || slides.length === 0) {
+    console.error('PDF를 생성할 슬라이드가 없습니다.');
+    alert('PDF 생성 중 오류가 발생했습니다: 슬라이드를 찾을 수 없습니다.');
     return;
   }
 
-  // 임시 컨테이너 생성 (모든 슬라이드를 순차적으로 렌더링)
-  const tempContainer = document.createElement('div');
-  tempContainer.style.position = 'fixed';
-  tempContainer.style.left = '-9999px';
-  tempContainer.style.top = '0';
-  tempContainer.style.width = '1600px';
-  tempContainer.style.height = '900px';
-  document.body.appendChild(tempContainer);
+  // html-to-image의 btoa Unicode 이슈 해결을 위한 Monkey Patch
+  // 한글 등 유니코드 문자가 포함된 DOM을 SVG로 변환할 때 btoa가 오류를 발생시키는 것을 방지합니다.
+  const originalBtoa = window.btoa;
+  window.btoa = (str) => {
+      try {
+          return originalBtoa(str);
+      } catch (err) {
+          // 유니코드를 UTF-8 바이트 문자열로 변환 후 Base64 인코딩
+          return originalBtoa(unescape(encodeURIComponent(str)));
+      }
+  };
+
+  const totalSlides = slides.length;
 
   try {
-    // 각 슬라이드를 fetch하고 캡처
-    for (let i = 0; i < slideData.length; i++) {
-      const slide = slideData[i];
-      
-      // 현재 페이지가 해당 슬라이드라면 직접 캡처
-      if (window.location.pathname === slide.path || 
-          (window.location.pathname === '/' && slide.id === 1)) {
-        const canvas = await html2canvas(slideElement, {
-          scale: 2,
-          useCORS: true,
-          logging: false,
-          width: 1600,
-          height: 900,
-          windowWidth: 1600,
-          windowHeight: 900,
+    // 폰트 로딩 대기 (아이콘 누락 방지)
+    await document.fonts.ready;
+
+    // 첫 번째 슬라이드 기준으로 PDF 크기 설정
+    const firstSlide = slides[0] as HTMLElement;
+    const slideWidth = firstSlide.scrollWidth;
+    const slideHeight = firstSlide.scrollHeight;
+    const aspectRatio = slideWidth / slideHeight;
+    
+    const pdfWidth = 297;
+    const pdfHeight = pdfWidth / aspectRatio;
+
+    const pdf = new jsPDF({
+        orientation: 'l',
+        unit: 'mm',
+        format: [pdfWidth, pdfHeight]
+    });
+
+    for (let i = 0; i < totalSlides; i++) {
+        const slide = slides[i] as HTMLElement;
+        
+        // 폰트 렌더링 안정화를 위한 짧은 대기
+        await new Promise(resolve => setTimeout(resolve, 300));
+
+        // html-to-image를 사용하여 이미지 생성
+        // JPEG 포맷을 사용하여 용량 최적화 (quality: 0.8)
+        const dataUrl = await toPng(slide, {
+            quality: 0.8,
+            pixelRatio: 1.5, // 2.0 -> 1.5로 하향 조정하여 용량 감소
+            backgroundColor: '#ffffff',
+            cacheBust: false, 
+            width: slideWidth,
+            height: slideHeight,
+            style: {
+                transform: 'scale(1)',
+                transformOrigin: 'top left',
+                width: `${slideWidth}px`,
+                height: `${slideHeight}px`,
+            }
         });
         
-        const imgData = canvas.toDataURL('image/jpeg', 0.95);
-        
-        if (i > 0) pdf.addPage();
-        pdf.addImage(imgData, 'JPEG', 0, 0, pdfWidth, pdfHeight);
-      } else {
-        // 다른 슬라이드는 iframe으로 로드해서 캡처
-        // 단순화를 위해 PPT처럼 코드로 생성
-        if (i > 0) pdf.addPage();
-        
-        // 슬라이드 배경
-        pdf.setFillColor(i % 2 === 0 ? 255 : 248, i % 2 === 0 ? 255 : 249, i % 2 === 0 ? 255 : 250);
-        pdf.rect(0, 0, pdfWidth, pdfHeight, 'F');
-        
-        // 제목
-        pdf.setFont('helvetica', 'bold');
-        pdf.setFontSize(14);
-        pdf.setTextColor(77, 168, 199);
-        pdf.text(`Slide ${slide.id}`, 20, 30);
-        
-        pdf.setFontSize(28);
-        pdf.setTextColor(15, 23, 42);
-        pdf.text(slide.title, 20, 50);
-      }
+        // 첫 페이지는 이미 생성되어 있으므로 두 번째부터 추가
+        if (i > 0) {
+            pdf.addPage([pdfWidth, pdfHeight], 'l');
+        }
+
+        // 이미지 비율 계산하여 PDF에 꽉 차게 넣기
+        // JPEG 압축 적용 (이미지 자체는 PNG로 캡처하더라도 PDF 삽입 시 압축 가능)
+        pdf.addImage(dataUrl, 'PNG', 0, 0, pdfWidth, pdfHeight, undefined, 'FAST');
     }
+
+    // 파일 저장
+    const timestamp = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+    pdf.save(`TerraLink_Proposal_${timestamp}.pdf`);
     
-    // 파일 확장자 명시적 지정
-    const pdfBlob = pdf.output('blob');
-    const pdfUrl = URL.createObjectURL(pdfBlob);
-    const pdfLink = document.createElement('a');
-    pdfLink.href = pdfUrl;
-    pdfLink.download = 'TerraLink_Product_Introduction.pdf';
-    document.body.appendChild(pdfLink);
-    pdfLink.click();
-    document.body.removeChild(pdfLink);
-    URL.revokeObjectURL(pdfUrl);
+  } catch (error) {
+    console.error('PDF 생성 중 오류 발생:', error);
+    alert(`PDF 생성에 실패했습니다: ${error instanceof Error ? error.message : String(error)}`);
   } finally {
-    document.body.removeChild(tempContainer);
+      // btoa 원상복구
+      window.btoa = originalBtoa;
   }
 }
 

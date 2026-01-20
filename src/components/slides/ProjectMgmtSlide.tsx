@@ -1,75 +1,66 @@
 'use client';
 
 import React from 'react';
+import { Archive, ListTodo, Crosshair, FolderKanban } from 'lucide-react';
 
 export default function ProjectMgmtSlide() {
-    const features = [
-        {
-            title: '현장별 아카이빙',
-            desc: '진행 중인 프로젝트와 완료된 현장을 구분하여 체계적으로 보관합니다.',
-            icon: 'fas fa-archive'
-        },
-        {
-            title: '상태별 프로젝트 관리',
-            desc: '프로젝트의 진행, 중지, 완료 상태를 한눈에 파악하고 효율적으로 관리합니다.',
-            icon: 'fas fa-tasks'
-        },
-        {
-            title: '좌표계 표준화',
-            desc: '현장마다 다른 좌표계 설정을 전사적으로 표준화하여 오차를 방지합니다.',
-            icon: 'fas fa-crosshairs'
-        }
-    ];
 
     return (
         <>
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-end', marginBottom: '3rem' }}>
-                <div>
-                    <span className="subtitle" style={{
-                        background: 'linear-gradient(135deg, rgba(0, 92, 154, 0.1) 0%, rgba(77, 168, 199, 0.1) 100%)',
-                        padding: '10px 20px',
-                        borderRadius: '100px'
-                    }}>
-                        PROJECT MANAGEMENT
-                    </span>
-                    <h2 style={{ marginTop: '1rem' }}>체계적인 프로젝트 관리</h2>
+            <div className="relative h-full overflow-hidden">
+                {/* Left - Image */}
+                <div
+                    className="absolute left-0 top-0 bottom-0 w-[50%]"
+                    style={{ clipPath: 'polygon(0 0, 100% 0, 88% 100%, 0 100%)' }}
+                >
+                    <img
+                        src="/테라링크이미지자료/4.png"
+                        alt="프로젝트 관리 화면"
+                        className="w-full h-full object-cover"
+                    />
+                    <div className="absolute inset-0 bg-linear-to-l from-[#f1f5f9]/20 to-transparent pointer-events-none" />
                 </div>
-                <p style={{ maxWidth: '400px', textAlign: 'right', fontSize: '1.1rem' }}>
-                    현장별로 프로젝트를 구분하고 상태를 관리하여<br />
-                    효율적인 작업 흐름과 가시성을 확보합니다.
-                </p>
-            </div>
 
-            <div className="grid-3">
-                {features.map((item, idx) => (
-                    <div
-                        key={idx}
-                        className="card fade-up"
-                        style={{
-                            animationDelay: `${idx * 0.1}s`,
-                            background: 'linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%)',
-                            border: 'none',
-                            boxShadow: '0 8px 30px rgba(0, 0, 0, 0.08)',
-                            padding: '2.5rem'
-                        }}
-                    >
-                        <div style={{
-                            width: '60px',
-                            height: '60px',
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            background: 'linear-gradient(135deg, #005c9a 0%, #4da8c7 100%)',
-                            borderRadius: '16px',
-                            marginBottom: '1.5rem',
-                            boxShadow: '0 8px 20px rgba(0, 92, 154, 0.25)'
-                        }}>
-                            <i className={item.icon} style={{ fontSize: '1.5rem', color: 'white' }}></i>
-                        </div>
-                        <h3>{item.title}</h3>
-                        <p style={{ fontSize: '1rem', lineHeight: 1.7 }}>{item.desc}</p>
+                {/* Right - Text & Cards */}
+                <div className="relative z-10 flex flex-col justify-center h-full w-[45%] ml-auto">
+                    <div className="relative p-8 rounded-3xl bg-white/40 backdrop-blur-lg border border-white/40 shadow-2xl">
+                        <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-teal-500/10 text-teal-600 font-bold tracking-wider text-sm mb-4">
+                            <FolderKanban className="w-4 h-4" />
+                            PROJECT MANAGEMENT
+                        </span>
+                        <h2 className="mt-4 text-4xl font-bold text-text-main leading-tight">
+                            체계적인
+                            <br />
+                            <span className="text-brand-blue">프로젝트 관리</span>
+                        </h2>
+                        <p className="mt-5 text-base text-text-muted leading-relaxed">
+                            현장별로 프로젝트를 구분하고 상태를 관리하여
+                            <br />
+                            효율적인 작업 흐름과 가시성을 확보합니다.
+                        </p>
                     </div>
-                ))}
+
+                    <div className="flex flex-col gap-4">
+                        {[
+                            { title: '현장별 아카이빙', desc: '진행 중인 프로젝트와 완료된 현장을 체계적으로 보관', icon: Archive, color: 'from-brand-blue to-brand-cyan' },
+                            { title: '상태별 관리', desc: '프로젝트 진행, 중지, 완료 상태를 한눈에 파악', icon: ListTodo, color: 'from-emerald-500 to-teal-400' },
+                            { title: '좌표계 표준화', desc: '현장마다 다른 좌표계 설정을 전사적으로 표준화', icon: Crosshair, color: 'from-violet-500 to-purple-400' }
+                        ].map((item, idx) => {
+                            const Icon = item.icon;
+                            return (
+                                <div key={idx} className="flex items-center gap-4 p-5 bg-white rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.06)] border border-slate-100">
+                                    <div className={`w-12 h-12 flex items-center justify-center bg-linear-to-br ${item.color} rounded-xl shrink-0 shadow-md`}>
+                                        <Icon className="w-5 h-5 text-white" />
+                                    </div>
+                                    <div>
+                                        <h4 className="font-bold text-text-main mb-1">{item.title}</h4>
+                                        <p className="text-sm text-text-muted">{item.desc}</p>
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
             </div>
         </>
     );

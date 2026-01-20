@@ -20,19 +20,20 @@ export default function Home() {
   return (
     <>
       <Header />
-      <div className="scroll-wrapper">
+
+      <div className="scroll-wrapper flex w-screen h-screen overflow-x-auto overflow-y-hidden snap-x snap-mandatory scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] print:block print:overflow-visible print:h-auto z-10 relative">
         {/* Slide 1: Cover */}
-        <SlideLayout pageNumber={1} variant="default">
+        <SlideLayout variant="brand">
           <CoverSlide />
         </SlideLayout>
 
         {/* Slide 2: Pain Points / Market Needs */}
-        <SlideLayout pageNumber={2} variant="gray">
+        <SlideLayout pageNumber={2} variant="dark">
           <PainPointsSlide />
         </SlideLayout>
 
         {/* Slide 3: Integration with TerraSurvey */}
-        <SlideLayout pageNumber={3} variant="default">
+        <SlideLayout pageNumber={3} variant="dark">
           <IntegrationSlide />
         </SlideLayout>
 
@@ -42,7 +43,7 @@ export default function Home() {
         </SlideLayout>
 
         {/* Slide 5: Coordinate System */}
-        <SlideLayout pageNumber={5} variant="default">
+        <SlideLayout pageNumber={5} variant="gray">
           <CoordinateSlide />
         </SlideLayout>
 
@@ -52,22 +53,22 @@ export default function Home() {
         </SlideLayout>
 
         {/* Slide 7: Data Management (8.png, 9.png, 10.png) */}
-        <SlideLayout pageNumber={7} variant="default">
+        <SlideLayout pageNumber={7} variant="gray">
           <DataManagementSlide />
         </SlideLayout>
 
         {/* Slide 8: Web CAD */}
-        <SlideLayout pageNumber={8} variant="gray">
+        <SlideLayout pageNumber={8} variant="brand">
           <WebCadSlide />
         </SlideLayout>
 
         {/* Slide 9: Outputs (보고서+데이터 내보내기 합침) */}
-        <SlideLayout pageNumber={9} variant="default">
+        <SlideLayout pageNumber={9} variant="dark">
           <OutputsSlide />
         </SlideLayout>
 
         {/* Slide 10: Admin System */}
-        <SlideLayout pageNumber={10} variant="gray">
+        <SlideLayout pageNumber={10} variant="dark">
           <AdminSlide />
         </SlideLayout>
 

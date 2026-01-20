@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { TrendingUp, Shield, Users, Zap, Clock, Wallet } from 'lucide-react';
 
 export default function ExpectationsSlide() {
     const stats = [
@@ -9,86 +10,95 @@ export default function ExpectationsSlide() {
             unit: '%',
             label: '업무 생산성 향상',
             desc: '데이터 재입력 및 후처리 시간 단축',
-            gradient: 'linear-gradient(135deg, #005c9a 0%, #4da8c7 100%)'
+            icon: TrendingUp,
+            gradient: 'from-brand-blue to-brand-cyan'
         },
         {
             value: '0',
             unit: '%',
             label: '데이터 유실 제로',
             desc: '클라우드 자동 동기화로 이력 보존',
-            gradient: 'linear-gradient(135deg, #27ae60 0%, #2ecc71 100%)'
+            icon: Shield,
+            gradient: 'from-emerald-500 to-teal-400'
         },
         {
             value: '100',
             unit: '%',
             label: '협업의 투명성',
             desc: '실시간 현장 데이터 공유 및 검토',
-            gradient: 'linear-gradient(135deg, #9b59b6 0%, #8e44ad 100%)'
+            icon: Users,
+            gradient: 'from-violet-500 to-purple-400'
         }
     ];
 
-    return (
-        <div style={{ textAlign: 'center' }}>
-            <span className="subtitle" style={{
-                background: 'linear-gradient(135deg, rgba(0, 92, 154, 0.1) 0%, rgba(77, 168, 199, 0.1) 100%)',
-                padding: '10px 20px',
-                borderRadius: '100px'
-            }}>
-                Expectations
-            </span>
-            <h2 style={{ marginTop: '1rem' }}>TerraLink 도입으로 얻는 가치</h2>
+    const benefits = [
+        { icon: Clock, title: '즉시 반영', desc: '현장 데이터가 사무실에 실시간 도착', color: 'from-brand-blue to-brand-cyan' },
+        { icon: Wallet, title: '비용 절감', desc: '중복 작업 제거로 인건비 절약', color: 'from-amber-500 to-orange-500' },
+        { icon: Zap, title: '빠른 의사결정', desc: '데이터 기반 신속한 판단', color: 'from-rose-500 to-pink-500' }
+    ];
 
-            <div className="grid-3" style={{ marginTop: '4rem' }}>
-                {stats.map((stat, idx) => (
-                    <div
-                        key={idx}
-                        className="fade-up"
-                        style={{
-                            animationDelay: `${idx * 0.15}s`,
-                            background: 'white',
-                            borderRadius: '24px',
-                            padding: '3rem 2rem',
-                            boxShadow: '0 8px 30px rgba(0, 0, 0, 0.08)'
-                        }}
-                    >
-                        <div style={{
-                            display: 'flex',
-                            alignItems: 'baseline',
-                            justifyContent: 'center',
-                            marginBottom: '1rem'
-                        }}>
-                            <span style={{
-                                fontSize: '5rem',
-                                fontWeight: 900,
-                                background: stat.gradient,
-                                WebkitBackgroundClip: 'text',
-                                WebkitTextFillColor: 'transparent',
-                                backgroundClip: 'text',
-                                letterSpacing: '-0.04em',
-                                lineHeight: 1
-                            }}>
-                                {stat.value}
-                            </span>
-                            <span style={{
-                                fontSize: '2rem',
-                                fontWeight: 700,
-                                background: stat.gradient,
-                                WebkitBackgroundClip: 'text',
-                                WebkitTextFillColor: 'transparent',
-                                backgroundClip: 'text'
-                            }}>
-                                {stat.unit}
-                            </span>
-                        </div>
-                        <p style={{ marginTop: '1rem' }}>
-                            <strong style={{ color: 'var(--text-main)', fontSize: '1.15rem', display: 'block', marginBottom: '0.5rem' }}>
-                                {stat.label}
-                            </strong>
-                            <span style={{ fontSize: '0.95rem' }}>{stat.desc}</span>
-                        </p>
-                    </div>
-                ))}
+    return (
+        <>
+            {/* Header */}
+            <div className="flex justify-center mb-10">
+                <div className="relative p-6 px-12 rounded-3xl bg-white/40 backdrop-blur-md border border-white/40 shadow-xl text-center">
+                    <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-green-500/10 text-green-600 font-bold tracking-wider text-sm mb-4">
+                        <TrendingUp className="w-4 h-4" />
+                        Expected Value
+                    </span>
+                    <h2 className="mt-4 text-4xl font-bold text-text-main">TerraLink 도입으로 얻는 가치</h2>
+                </div>
             </div>
-        </div>
+
+            {/* Main Stats */}
+            <div className="grid grid-cols-3 gap-8 mb-10">
+                {stats.map((stat, idx) => {
+                    const Icon = stat.icon;
+                    return (
+                        <div
+                            key={idx}
+                            className="group relative bg-white rounded-[24px] p-10 shadow-[0_8px_30px_rgba(0,0,0,0.08)] border border-slate-100 overflow-hidden"
+                        >
+                            {/* Icon */}
+                            <div className={`w-14 h-14 rounded-2xl bg-linear-to-br ${stat.gradient} flex items-center justify-center mb-6 shadow-lg`}>
+                                <Icon className="w-7 h-7 text-white" />
+                            </div>
+
+                            {/* Value */}
+                            <div className="flex items-baseline mb-4">
+                                <span className={`text-[4.5rem] font-black bg-clip-text text-transparent tracking-tighter leading-none bg-linear-to-r ${stat.gradient}`}>
+                                    {stat.value}
+                                </span>
+                                <span className={`text-[2rem] font-bold bg-clip-text text-transparent bg-linear-to-r ${stat.gradient} ml-1`}>
+                                    {stat.unit}
+                                </span>
+                            </div>
+
+                            {/* Label */}
+                            <h3 className="text-xl font-bold text-text-main mb-2">{stat.label}</h3>
+                            <p className="text-sm text-text-muted leading-relaxed">{stat.desc}</p>
+                        </div>
+                    );
+                })}
+            </div>
+
+            {/* Bottom Benefits Row */}
+            <div className="grid grid-cols-3 gap-5">
+                {benefits.map((item, idx) => {
+                    const Icon = item.icon;
+                    return (
+                        <div key={idx} className="flex items-center gap-4 p-5 bg-linear-to-br from-slate-50 to-white rounded-xl border border-slate-100">
+                            <div className={`w-12 h-12 rounded-xl bg-linear-to-br ${item.color} flex items-center justify-center shadow-md shrink-0`}>
+                                <Icon className="w-5 h-5 text-white" />
+                            </div>
+                            <div>
+                                <h4 className="font-bold text-text-main mb-0.5">{item.title}</h4>
+                                <p className="text-sm text-text-muted">{item.desc}</p>
+                            </div>
+                        </div>
+                    );
+                })}
+            </div>
+        </>
     );
 }
