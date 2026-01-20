@@ -57,7 +57,7 @@ export default function ExpectationsSlide() {
                     return (
                         <div
                             key={idx}
-                            className="group relative bg-white rounded-[24px] p-10 shadow-[0_8px_30px_rgba(0,0,0,0.08)] border border-slate-100 overflow-hidden"
+                            className="group relative bg-white rounded-[24px] p-8 shadow-[0_8px_30px_rgba(0,0,0,0.08)] border border-slate-100 overflow-hidden"
                         >
                             {/* Icon */}
                             <div className={`w-14 h-14 rounded-2xl bg-linear-to-br ${stat.gradient} flex items-center justify-center mb-6 shadow-lg`}>
@@ -83,7 +83,7 @@ export default function ExpectationsSlide() {
             </div>
 
             {/* Bottom Benefits Row */}
-            <div className="grid grid-cols-3 gap-5">
+            <div className="grid grid-cols-3 gap-8">
                 {benefits.map((item, idx) => {
                     const Icon = item.icon;
                     return (

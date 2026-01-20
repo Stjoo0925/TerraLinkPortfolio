@@ -29,7 +29,7 @@ export default function DataManagementSlide() {
             </div>
 
             {/* Three Column Layout with Images */}
-            <div className="grid grid-cols-3 gap-6">
+            <div className="grid grid-cols-3 gap-8">
                 {/* Column 1 - 현황/속성 */}
                 <div className="bg-white rounded-2xl overflow-hidden shadow-[0_10px_30px_rgba(0,0,0,0.08)] border border-slate-100 flex flex-col">
                     <div className="p-4 flex-1 flex items-center justify-center bg-slate-50/50">
@@ -101,7 +101,7 @@ export default function DataManagementSlide() {
             </div>
 
             {/* Bottom Features */}
-            <div className="grid grid-cols-4 gap-4 mt-6">
+            <div className="grid grid-cols-4 gap-6 mt-8">
                 {bottomFeatures.map((item, idx) => {
                     const Icon = item.icon;
                     return (

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { PenTool, FileCode, Layers, Rocket, Monitor } from 'lucide-react';
+import { PenTool, FileCode, Layers, Rocket, Monitor, MousePointer2, Calculator, Map } from 'lucide-react';
 
 export default function WebCadSlide() {
     const features = [
@@ -14,7 +14,7 @@ export default function WebCadSlide() {
     return (
         <>
             <div className="flex justify-between items-end mb-8">
-                <div className="relative p-6 pr-12 rounded-3xl bg-white/10 backdrop-blur-md border border-white/20 shadow-xl">
+                <div className="relative p-6 pr-12 rounded-3xl bg-black/20 backdrop-blur-md border border-white/10 shadow-xl">
                     <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 text-white font-bold tracking-wider text-sm mb-4 backdrop-blur-sm border border-white/20">
                         <Monitor className="w-4 h-4" />
                         WEB CAD
@@ -31,23 +31,29 @@ export default function WebCadSlide() {
             </div>
 
             {/* Main CAD Preview - 3 Column Image Cards */}
-            <div className="grid grid-cols-3 gap-5 mb-6">
+            <div className="grid grid-cols-3 gap-8 mb-8">
                 {[
-                    { img: '/웹캐드/1.png', label: '측점 데이터 확인' },
-                    { img: '/웹캐드/2.png', label: '면적 계산' },
-                    { img: '/웹캐드/3.png', label: '지적도 설정' }
+                    { img: '/웹캐드/1.png', label: '측점 데이터 확인', desc: '도면 내 측점 좌표 및 속성 즉시 조회', icon: MousePointer2, color: 'from-brand-blue to-brand-cyan' },
+                    { img: '/웹캐드/2.png', label: '면적 계산', desc: '선택 영역의 자동 면적 산출 및 리스트업', icon: Calculator, color: 'from-emerald-500 to-teal-500' },
+                    { img: '/웹캐드/3.png', label: '지적도 설정', desc: '지적도 레이어 중첩 및 위치 보정 지원', icon: Map, color: 'from-violet-500 to-purple-500' }
                 ].map((item, idx) => (
-                    <div key={idx} className="bg-white/10 backdrop-blur-md rounded-2xl overflow-hidden shadow-2xl border border-white/10 flex flex-col">
-                        <div className="p-3 flex-1 flex items-center justify-center">
+                    <div key={idx} className="bg-black/20 backdrop-blur-md rounded-2xl overflow-hidden shadow-2xl border border-white/10 flex flex-col">
+                        <div className="p-4 flex-1 flex items-center justify-center bg-white/5">
                             <img
                                 src={item.img}
                                 alt={item.label}
                                 className="w-full h-auto max-h-[160px] object-contain drop-shadow-xl"
                             />
                         </div>
-                        <div className="p-3 bg-white/5 border-t border-white/10">
-                            <p className="text-center text-sm font-medium text-white">
-                                {item.label}
+                        <div className="p-5">
+                            <div className="flex items-center gap-3 mb-3">
+                                <div className={`w-9 h-9 flex items-center justify-center bg-linear-to-br ${item.color} rounded-xl shadow-md`}>
+                                    <item.icon className="w-4 h-4 text-white" />
+                                </div>
+                                <h4 className="text-base font-bold text-white">{item.label}</h4>
+                            </div>
+                            <p className="text-sm leading-relaxed text-white/60">
+                                {item.desc}
                             </p>
                         </div>
                     </div>
@@ -55,7 +61,7 @@ export default function WebCadSlide() {
             </div>
 
             {/* Features */}
-            <div className="grid grid-cols-4 gap-4">
+            <div className="grid grid-cols-4 gap-6">
                 {features.map((item, idx) => {
                     const Icon = item.icon;
                     return (

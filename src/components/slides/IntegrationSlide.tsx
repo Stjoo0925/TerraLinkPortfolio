@@ -9,8 +9,8 @@ export default function IntegrationSlide() {
         <>
             <div className="relative h-full overflow-hidden">
                 {/* Left - Text & Cards */}
-                <div className="relative z-10 flex flex-col justify-center h-full w-[40%]">
-                    <div className="relative p-8 rounded-3xl bg-white/10 backdrop-blur-lg border border-white/20 shadow-2xl">
+                <div className="relative z-10 flex flex-col justify-center h-full w-[38%]">
+                    <div className="relative mb-8">
                         <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 text-white font-bold tracking-wider text-sm mb-4 backdrop-blur-sm border border-white/20">
                             <Link2 className="w-4 h-4" />
                             PLATFORM SYNERGY
@@ -50,7 +50,7 @@ export default function IntegrationSlide() {
 
                 {/* Right - Image */}
                 <div
-                    className="absolute right-0 top-0 bottom-0 w-[58%]"
+                    className="absolute right-0 top-0 bottom-0 w-[55%]"
                     style={{ clipPath: 'polygon(12% 0, 100% 0, 100% 100%, 0 100%)' }}
                 >
                     <img

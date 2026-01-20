@@ -10,7 +10,7 @@ export default function ProjectMgmtSlide() {
             <div className="relative h-full overflow-hidden">
                 {/* Left - Image */}
                 <div
-                    className="absolute left-0 top-0 bottom-0 w-[50%]"
+                    className="absolute left-0 top-0 bottom-0 w-[45%]"
                     style={{ clipPath: 'polygon(0 0, 100% 0, 88% 100%, 0 100%)' }}
                 >
                     <img
@@ -22,8 +22,8 @@ export default function ProjectMgmtSlide() {
                 </div>
 
                 {/* Right - Text & Cards */}
-                <div className="relative z-10 flex flex-col justify-center h-full w-[45%] ml-auto">
-                    <div className="relative p-8 rounded-3xl bg-white/40 backdrop-blur-lg border border-white/40 shadow-2xl">
+                <div className="relative z-10 flex flex-col justify-center h-full w-[42%] ml-auto">
+                    <div className="relative mb-8">
                         <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-teal-500/10 text-teal-600 font-bold tracking-wider text-sm mb-4">
                             <FolderKanban className="w-4 h-4" />
                             PROJECT MANAGEMENT

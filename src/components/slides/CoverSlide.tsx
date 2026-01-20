@@ -5,9 +5,9 @@ import React from 'react';
 export default function CoverSlide() {
 
     return (
-        <div className="h-full w-full relative flex items-center pl-10 lg:pl-[120px] pr-12 overflow-hidden">
+        <div className="h-full w-full relative flex items-center pl-10 lg:pl-[120px] pr-12 overflow-hidden select-none">
             {/* Background Image Section - Skewed & Sharper Blend */}
-            <div className="absolute right-0 top-0 w-[55%] h-full -skew-x-12 origin-bottom translate-x-20 -z-10 overflow-hidden group border-l border-white/5">
+            <div className="absolute right-0 top-0 w-[60%] h-full -skew-x-12 origin-bottom translate-x-24 -z-10 overflow-hidden group border-l border-white/5">
                 {/* Counter Skew Container */}
                 <div className="absolute inset-0 skew-x-12 scale-125 origin-bottom">
                     <div className="relative w-full h-full">
@@ -27,10 +27,10 @@ export default function CoverSlide() {
             </div>
 
             {/* Reduced Blur Decorative Element */}
-            <div className="absolute right-[5%] bottom-[5%] w-[700px] h-[700px] bg-[radial-gradient(circle,rgba(255,255,255,0.05)_0%,transparent_70%)] blur-2xl -z-10" />
+            <div className="absolute right-[5%] bottom-[5%] w-[8900px] h-[700px] bg-[radial-gradient(circle,rgba(255,255,255,0.05)_0%,transparent_70%)] blur-2xl -z-10" />
 
-            <div className="max-w-5xl z-10 fade-up">
-                <div className="relative p-10 lg:p-14 rounded-[3rem] bg-white/5 backdrop-blur-md border border-white/10 shadow-2xl">
+            <div className="max-w-[850px] z-10 fade-up">
+                <div className="relative">
                     {/* Tagline - White style */}
                     <div className="flex items-center gap-3 mb-10">
                         <span className="px-3.5 py-1.5 bg-white/10 text-white text-[0.8rem] font-bold tracking-[0.2em] uppercase rounded-sm border border-white/20">
@@ -39,13 +39,13 @@ export default function CoverSlide() {
                     </div>
 
                     {/* Main Title - Massive & Clean - Cyan Accents */}
-                    <h1 className="text-[6.5rem] lg:text-[9.5rem] font-black leading-[0.85] tracking-tighter text-white mb-12 -ml-1 select-none">
+                    <h1 className="text-[5.5rem] lg:text-[7.5rem] font-black leading-[0.85] tracking-tighter text-white mb-10 -ml-1 select-none">
                         Terra<span className="text-brand-cyan">Link</span>
                         <span className="text-brand-cyan leading-none">.</span>
                     </h1>
 
                     {/* Description - Modern Typography */}
-                    <p className="text-2xl lg:text-[2.2rem] text-white/90 font-light leading-snug max-w-3xl tracking-tight">
+                    <p className="text-xl lg:text-[1.8rem] text-white/90 font-light leading-snug max-w-2xl tracking-tight">
                         현장과 사무실을 잇는<br />
                         <span className="text-white font-bold">가장 완벽한 디지털 워크플로우</span>
                     </p>

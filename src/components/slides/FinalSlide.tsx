@@ -7,7 +7,7 @@ export default function FinalSlide() {
     return (
         <div className="h-full w-full relative flex flex-col items-center justify-center overflow-hidden">
             {/* Main Content */}
-            <div className="relative z-10 text-center max-w-5xl px-12 py-16 rounded-[3rem] bg-white/5 backdrop-blur-md border border-white/10 shadow-2xl">
+            <div className="relative z-10 text-center max-w-5xl px-12 py-16 rounded-[3rem] bg-black/20 backdrop-blur-md border border-white/10 shadow-2xl">
 
                 {/* Main Title */}
                 <h1 className="text-[5rem] lg:text-[7rem] font-black leading-[0.85] tracking-tight mb-10">

@@ -13,7 +13,7 @@ export default function AdminSlide() {
     return (
         <>
             <div className="flex justify-between items-end mb-10">
-                <div className="relative p-6 pr-12 rounded-3xl bg-white/10 backdrop-blur-md border border-white/20 shadow-xl">
+                <div className="relative p-6 pr-12 rounded-3xl bg-black/20 backdrop-blur-md border border-white/10 shadow-xl">
                     <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 text-white font-bold tracking-wider text-sm mb-4 backdrop-blur-sm border border-white/20">
                         <Settings className="w-4 h-4" />
                         SYSTEM ADMINISTRATION
@@ -27,33 +27,49 @@ export default function AdminSlide() {
             </div>
 
             {/* Two Column Layout */}
-            <div className="grid grid-cols-2 gap-8">
+            <div className="grid grid-cols-2 gap-8 mb-8">
                 {/* Left - 회사 정보 관리 */}
-                <div className="bg-white/10 backdrop-blur-md rounded-2xl overflow-hidden shadow-2xl border border-white/10 flex flex-col">
-                    <div className="p-4 flex-1 flex items-center justify-center">
+                <div className="bg-black/20 backdrop-blur-md rounded-2xl overflow-hidden shadow-2xl border border-white/10 flex flex-col">
+                    <div className="p-4 flex-1 flex items-center justify-center bg-white/5">
                         <img
                             src="/테라링크이미지자료/13.png"
                             alt="회사 정보 관리"
-                            className="w-full h-auto max-h-[240px] object-contain drop-shadow-2xl"
+                            className="w-full h-auto max-h-[180px] object-contain drop-shadow-2xl"
                         />
                     </div>
-                    <div className="p-4 bg-white/5 border-t border-white/10 flex items-center justify-center gap-2">
-                        <Building2 className="w-4 h-4 text-brand-cyan" />
-                        <p className="text-white font-medium text-sm">사용자 계정 통합 관리</p>
+                    <div className="p-5">
+                        <div className="flex items-center gap-3 mb-3">
+                            <div className="w-9 h-9 flex items-center justify-center bg-linear-to-br from-brand-blue to-brand-cyan rounded-xl shadow-md">
+                                <Building2 className="w-4 h-4 text-white" />
+                            </div>
+                            <h4 className="text-base font-bold text-white">사용자 계정 통합 관리</h4>
+                        </div>
+                        <p className="text-sm leading-relaxed text-white/60">
+                            부서별, 프로젝트별 사용자 계정 생성 및<br />
+                            접근 권한(관리자/일반)을 체계적으로 제어합니다.
+                        </p>
                     </div>
                 </div>
                 {/* Right - 계정 관리 */}
-                <div className="bg-white/10 backdrop-blur-md rounded-2xl overflow-hidden shadow-2xl border border-white/10 flex flex-col">
-                    <div className="p-4 flex-1 flex items-center justify-center">
+                <div className="bg-black/20 backdrop-blur-md rounded-2xl overflow-hidden shadow-2xl border border-white/10 flex flex-col">
+                    <div className="p-4 flex-1 flex items-center justify-center bg-white/5">
                         <img
                             src="/테라링크이미지자료/14.png"
                             alt="계정 관리"
-                            className="w-full h-auto max-h-[240px] object-contain drop-shadow-2xl"
+                            className="w-full h-auto max-h-[180px] object-contain drop-shadow-2xl"
                         />
                     </div>
-                    <div className="p-4 bg-white/5 border-t border-white/10 flex items-center justify-center gap-2">
-                        <UserPlus className="w-4 h-4 text-brand-cyan" />
-                        <p className="text-white font-medium text-sm">측량 코드 관리</p>
+                    <div className="p-5">
+                        <div className="flex items-center gap-3 mb-3">
+                            <div className="w-9 h-9 flex items-center justify-center bg-linear-to-br from-emerald-500 to-teal-500 rounded-xl shadow-md">
+                                <UserPlus className="w-4 h-4 text-white" />
+                            </div>
+                            <h4 className="text-base font-bold text-white">측량 코드 관리</h4>
+                        </div>
+                        <p className="text-sm leading-relaxed text-white/60">
+                            회사 내 표준 측량 코드(Layer, Symbol 등)를<br />
+                            중앙에서 설정하여 데이터 정밀도를 유지합니다.
+                        </p>
                     </div>
                 </div>
             </div>
@@ -63,7 +79,7 @@ export default function AdminSlide() {
                 {features.map((item, idx) => {
                     const Icon = item.icon;
                     return (
-                        <div key={idx} className="bg-white/10 backdrop-blur-md rounded-2xl p-5 shadow-xl text-center border border-white/10">
+                        <div key={idx} className="bg-black/20 backdrop-blur-md rounded-2xl p-5 shadow-xl text-center border border-white/10">
                             <div className={`w-11 h-11 flex items-center justify-center bg-linear-to-br ${item.color} rounded-xl mx-auto mb-3 shadow-md`}>
                                 <Icon className="w-5 h-5 text-white" />
                             </div>

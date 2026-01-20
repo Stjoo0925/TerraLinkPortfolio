@@ -49,7 +49,7 @@ export default function CustomFeaturesSlide() {
                             className="group flex-1 flex items-center gap-6 p-6 bg-white rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.06)] border border-slate-100"
                         >
                             {/* Icon */}
-                            <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${feature.color} flex items-center justify-center shrink-0 shadow-lg`}>
+                            <div className={`w-16 h-16 rounded-2xl bg-linear-to-br ${feature.color} flex items-center justify-center shrink-0 shadow-lg`}>
                                 <Icon className="w-8 h-8 text-white" />
                             </div>
 

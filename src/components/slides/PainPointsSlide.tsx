@@ -38,7 +38,7 @@ export default function PainPointsSlide() {
     return (
         <>
             <div className="flex justify-center mb-10">
-                <div className="relative p-6 px-12 rounded-3xl bg-white/10 backdrop-blur-md border border-white/20 shadow-xl text-center">
+                <div className="relative p-6 px-12 rounded-3xl bg-black/20 backdrop-blur-md border border-white/10 shadow-xl text-center">
                     <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 text-white font-bold tracking-wider text-sm mb-4 backdrop-blur-sm border border-white/20">
                         <AlertTriangle className="w-4 h-4" />
                         MARKET NEEDS
@@ -46,7 +46,7 @@ export default function PainPointsSlide() {
                     <h2 className="mt-4 text-4xl font-bold text-white">
                         기존 측량 업무의 비효율성
                     </h2>
-                    <p className="mt-4 text-base text-white/70 max-w-xl mx-auto">
+                    <p className="mt-4 text-base text-white/80 max-w-xl mx-auto">
                         현장과 사무실 간 데이터 흐름의 단절이
                         <br />
                         생산성 저하의 주요 원인입니다
@@ -60,7 +60,7 @@ export default function PainPointsSlide() {
                     return (
                         <div
                             key={idx}
-                            className="group relative bg-white/10 backdrop-blur-md rounded-2xl p-6 shadow-xl border border-white/10 overflow-hidden"
+                            className="group relative bg-black/20 backdrop-blur-md rounded-2xl p-6 shadow-xl border border-white/10 overflow-hidden"
                         >
                             {/* Top accent line */}
                             <div className={`absolute top-0 left-0 right-0 h-1 bg-linear-to-r ${item.color}`} />
@@ -84,7 +84,7 @@ export default function PainPointsSlide() {
             </div>
 
             {/* Conclusion Banner */}
-            <div className="p-5 bg-white/5 backdrop-blur-sm rounded-2xl border-l-4 border-rose-500">
+            <div className="p-5 bg-black/20 backdrop-blur-sm rounded-2xl border-l-4 border-rose-500">
                 <div className="flex items-center gap-4">
                     <div className="w-12 h-12 rounded-xl bg-linear-to-br from-rose-500 to-orange-500 flex items-center justify-center shrink-0 shadow-md">
                         <AlertTriangle className="w-5 h-5 text-white" />
