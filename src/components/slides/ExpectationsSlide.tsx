@@ -41,8 +41,8 @@ export default function ExpectationsSlide() {
         <>
             {/* Header */}
             <div className="flex justify-center mb-10">
-                <div className="relative p-6 px-12 rounded-3xl bg-white/50 backdrop-blur-md border border-white/40 shadow-xl text-center">
-                    <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-green-500/10 text-green-600 font-bold tracking-wider text-sm mb-4">
+                <div className="relative p-6 px-12 rounded-3xl bg-white/50 backdrop-blur-md border border-white/40 shadow-md text-center">
+                    <span className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-slate-100 text-green-600 font-bold tracking-wider text-sm mb-6 shadow-[5px_5px_10px_#cbd5e1,-5px_-5px_10px_#ffffff]">
                         <TrendingUp className="w-4 h-4" />
                         Expected Value
                     </span>
@@ -61,7 +61,7 @@ export default function ExpectationsSlide() {
                     return (
                         <div
                             key={idx}
-                            className="group relative bg-white/50 backdrop-blur-md rounded-[24px] p-8 shadow-[0_8px_30px_rgba(0,0,0,0.08)] border border-white/40 overflow-hidden text-center flex flex-col items-center"
+                            className="group relative bg-white/50 backdrop-blur-md rounded-xl p-8 shadow-md border border-white/20 overflow-hidden text-center flex flex-col items-center"
                         >
                             <div className="flex items-center justify-center gap-5 mb-6">
                                 {/* Icon */}
@@ -79,7 +79,6 @@ export default function ExpectationsSlide() {
                                     </span>
                                 </div>
                             </div>
-
                             {/* Label */}
                             <h3 className="text-xl font-bold text-text-main mb-2">{stat.label}</h3>
                             <p className="text-sm text-text-muted leading-relaxed break-keep">{stat.desc}</p>
@@ -93,7 +92,7 @@ export default function ExpectationsSlide() {
                 {benefits.map((item, idx) => {
                     const Icon = item.icon;
                     return (
-                        <div key={idx} className="flex items-center gap-4 p-5 bg-white/50 backdrop-blur-md rounded-xl border border-white/40 shadow-sm">
+                        <div key={idx} className="flex items-center gap-4 p-5 bg-white/50 backdrop-blur-md rounded-xl border border-white/40 shadow-md">
                             <div className={`w-12 h-12 rounded-xl bg-linear-to-br ${item.color} flex items-center justify-center shadow-md shrink-0`}>
                                 <Icon className="w-5 h-5 text-white" />
                             </div>

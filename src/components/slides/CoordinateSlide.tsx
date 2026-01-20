@@ -16,7 +16,7 @@ export default function CoordinateSlide() {
                 {/* Left - Text & Cards */}
                 <div className="relative z-10 flex flex-col justify-between h-full w-[40%]">
                     <div className="relative">
-                        <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-cyan-500/10 text-cyan-600 font-bold tracking-wider text-sm mb-4">
+                        <span className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-slate-100 text-cyan-600 font-bold tracking-wider text-sm mb-6 shadow-[5px_5px_10px_#cbd5e1,-5px_-5px_10px_#ffffff]">
                             <MapPin className="w-4 h-4" />
                             COORDINATE SYSTEM
                         </span>
@@ -34,7 +34,7 @@ export default function CoordinateSlide() {
 
                     <div className="flex flex-col gap-4">
                         {coordinateSystems.map((item, idx) => (
-                            <div key={idx} className="flex items-center gap-4 p-5 bg-white/50 backdrop-blur-md rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.06)] border border-white/40">
+                            <div key={idx} className="flex items-center gap-4 p-5 bg-white/50 backdrop-blur-md rounded-2xl shadow-md border border-white/40 mb-1">
                                 <div className={`px-3 py-2 bg-linear-to-br ${item.color} rounded-xl text-white font-bold text-sm shrink-0 shadow-md`}>
                                     {item.code}
                                 </div>

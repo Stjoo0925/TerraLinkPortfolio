@@ -28,7 +28,7 @@ export default function CloudStorageSlide() {
             {/* Right - Text & Cards */}
             <div className="relative z-10 flex flex-col justify-between h-full w-[40%] ml-auto">
                 <div className="">
-                    <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-linear-to-br from-sky-500/10 to-brand-cyan/10 text-sky-600 font-bold tracking-wider text-sm mb-4">
+                    <span className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-slate-100 text-sky-600 font-bold tracking-wider text-sm mb-6 shadow-[5px_5px_10px_#cbd5e1,-5px_-5px_10px_#ffffff]">
                         <Cloud className="w-4 h-4" />
                         CLOUD STORAGE
                     </span>
@@ -48,7 +48,7 @@ export default function CloudStorageSlide() {
                     {features.map((item, idx) => {
                         const Icon = item.icon;
                         return (
-                            <div key={idx} className="flex items-center gap-4 p-4 bg-white/50 backdrop-blur-md rounded-2xl shadow-[0_4px_20px_rgba(0,0,0,0.06)] border border-white/40">
+                            <div key={idx} className="flex items-center gap-4 p-4 bg-white/50 backdrop-blur-md rounded-2xl shadow-md border border-white/40 mb-1">
                                 <div className={`w-10 h-10 flex items-center justify-center bg-linear-to-br ${item.color} rounded-xl shrink-0 shadow-md`}>
                                     <Icon className="w-4 h-4 text-white" />
                                 </div>

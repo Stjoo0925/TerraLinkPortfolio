@@ -15,7 +15,7 @@ export default function WebCadSlide() {
         <>
             <div className="flex justify-between items-end mb-8">
                 <div className="">
-                    <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-black/10 text-white font-bold tracking-wider text-sm mb-4 backdrop-blur-sm border border-white/20">
+                    <span className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-slate-100 text-brand-blue font-bold tracking-wider text-sm mb-6 shadow-[0_0_15px_rgba(255,255,255,0.15)] border border-white/20">
                         <Monitor className="w-4 h-4" />
                         WEB CAD
                     </span>

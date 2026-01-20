@@ -14,7 +14,7 @@ export default function AdminSlide() {
         <>
             <div className="flex justify-center mb-10">
                 <div className="relative p-6 px-12 rounded-3xl bg-black/10 backdrop-blur-md border border-white/10 shadow-xl text-center">
-                    <span className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/10 text-white font-bold tracking-wider text-sm mb-4 backdrop-blur-sm border border-white/20">
+                    <span className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-slate-100 text-indigo-600 font-bold tracking-wider text-sm mb-6 shadow-[0_0_15px_rgba(255,255,255,0.15)] border border-white/20">
                         <Settings className="w-4 h-4" />
                         SYSTEM ADMINISTRATION
                     </span>
