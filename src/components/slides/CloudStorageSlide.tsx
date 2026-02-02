@@ -14,15 +14,25 @@ export default function CloudStorageSlide() {
     return (
         <div className="relative h-[620px] overflow-hidden">
             {/* Left - Image */}
-            <div
-                className="absolute left-0 top-0 bottom-0 w-[55%] bg-[#0f172a]"
-                style={{ clipPath: 'polygon(0 0, 100% 0, 85% 100%, 0 100%)' }}
-            >
-                <img
-                    src="/테라링크이미지자료/7.png"
-                    alt="파일 관리 시스템"
-                    className="w-full h-full object-cover"
-                />
+            {/* Left - Image (Blurred Backdrop Style) */}
+            <div className="absolute left-4 top-4 bottom-4 w-[55%] rounded-3xl overflow-hidden border border-white/40">
+                {/* 1. Blurred Background Layer */}
+                <div className="absolute inset-0 z-0 bg-slate-100">
+                    <img
+                        src="/테라링크이미지자료/7.png"
+                        alt="Background Blur"
+                        className="w-full h-full object-cover blur-xs opacity-70"
+                    />
+                </div>
+
+                {/* 2. Main Image Layer */}
+                <div className="absolute inset-8 z-10 flex items-center justify-center">
+                    <img
+                        src="/테라링크이미지자료/7.png"
+                        alt="파일 관리 시스템"
+                        className="max-w-full max-h-full object-contain drop-shadow-xl rounded-lg"
+                    />
+                </div>
             </div>
 
             {/* Right - Text & Cards */}

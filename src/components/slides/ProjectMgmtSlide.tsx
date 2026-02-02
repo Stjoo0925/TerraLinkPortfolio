@@ -9,16 +9,25 @@ export default function ProjectMgmtSlide() {
         <>
             <div className="relative h-[620px] overflow-hidden">
                 {/* Left - Image */}
-                <div
-                    className="absolute left-0 top-0 bottom-0 w-[55%]"
-                    style={{ clipPath: 'polygon(0 0, 100% 0, 85% 100%, 0 100%)' }}
-                >
-                    <img
-                        src="/테라링크이미지자료/4.png"
-                        alt="프로젝트 관리 화면"
-                        className="w-full h-full object-cover"
-                    />
-                    <div className="absolute inset-0 bg-linear-to-l from-[#f1f5f9]/20 to-transparent pointer-events-none" />
+                {/* Left - Image (Blurred Backdrop Style) */}
+                <div className="absolute left-4 top-4 bottom-4 w-[55%] rounded-3xl overflow-hidden border border-white/40">
+                    {/* 1. Blurred Background Layer */}
+                    <div className="absolute inset-0 z-0 bg-slate-100">
+                        <img
+                            src="/테라링크이미지자료/4.png"
+                            alt="Background Blur"
+                            className="w-full h-full object-cover blur-xs opacity-70"
+                        />
+                    </div>
+
+                    {/* 2. Main Image Layer */}
+                    <div className="absolute inset-8 z-10 flex items-center justify-center">
+                        <img
+                            src="/테라링크이미지자료/4.png"
+                            alt="프로젝트 관리 화면"
+                            className="max-w-full max-h-full object-contain drop-shadow-xl rounded-lg"
+                        />
+                    </div>
                 </div>
 
                 {/* Right - Text & Cards */}

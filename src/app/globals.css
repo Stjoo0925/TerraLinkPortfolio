@@ -4,20 +4,22 @@
   --color-brand-blue: #005c9a;
   --color-brand-cyan: #4da8c7;
   --color-brand-orange: #ff9d00;
-    
+
   --color-bg-page: #ffffff;
   --color-bg-gray: #f8f9fa;
   --color-bg-dark: #0f172a;
-    
+
   --color-text-main: #0f172a;
   --color-text-muted: #64748b;
   --color-text-white: #ffffff;
-    
+
   --color-border-light: #e2e8f0;
-  
+
   --shadow-sm: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
-  --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.05);
-  --shadow-lg: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+  --shadow-md:
+    0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.05);
+  --shadow-lg:
+    0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
   --shadow-xl: 0 20px 40px -5px rgba(0, 0, 0, 0.15);
 }
 
@@ -36,7 +38,41 @@
 }
 
 body {
-    font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
+  font-family: "Pretendard", "Noto Sans KR", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+/* Print Header: Visible by default (for print), hidden on screen */
+.print-header-force {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+}
+
+/* Hide on screen display only */
+@media screen {
+  .print-header-force {
+    display: none !important;
+  }
+}
+
+/* Ensure visibility and colors on print */
+@media print {
+  body {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  .print-header-force {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .print-text-safe {
+    color: #0f172a !important;
+  }
 }

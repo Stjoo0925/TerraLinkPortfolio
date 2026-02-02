@@ -21,7 +21,7 @@ export default function Home() {
     <>
       <Header />
 
-      <div className="scroll-wrapper flex w-screen h-screen overflow-x-auto overflow-y-hidden snap-x snap-mandatory scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] print:block print:overflow-visible print:h-auto z-10 relative">
+      <div className="scroll-wrapper flex w-screen h-screen overflow-x-auto overflow-y-hidden snap-x snap-mandatory scroll-smooth [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none] print:!block print:!overflow-visible print:!h-auto print:!w-auto z-10 relative">
         {/* Slide 1: Cover */}
         <SlideLayout variant="brand">
           <CoverSlide />
