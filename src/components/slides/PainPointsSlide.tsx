@@ -44,7 +44,7 @@ export default function PainPointsSlide() {
                         MARKET NEEDS
                     </span>
                     <h2 className="mt-4 text-4xl font-bold text-white">
-                        기존 측량 업무의 비효율성
+                        전통적인 측량 업무의 비효율성
                     </h2>
                     <p className="mt-4 text-base text-white/80 max-w-xl mx-auto">
                         현장과 사무실 간 데이터 흐름의 단절이

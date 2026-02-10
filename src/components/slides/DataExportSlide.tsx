@@ -26,8 +26,8 @@ export default function DataExportSlide() {
                 </h2>
 
                 <p className="text-lg text-text-muted mb-8 leading-relaxed">
-                    CSV, TXT, DXF 등 다양한 포맷으로 데이터를 내보내<br />
-                    CAD 및 오피스 소프트웨어와 원활하게 연동합니다.
+                    TXT, CSV 포맷으로 성과를 내보내<br />
+                    타 소프트웨어와 원활하게 연동합니다.
                 </p>
 
                 <div className="grid grid-cols-2 gap-4">

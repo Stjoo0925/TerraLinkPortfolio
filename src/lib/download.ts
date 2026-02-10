@@ -2,7 +2,43 @@ import { toPng } from "html-to-image";
 import jsPDF from "jspdf";
 import PptxGenJS from "pptxgenjs";
 
-// ... (slideData definition)
+// 슬라이드 variant에 따른 헤더 색상 결정
+function getHeaderColor(slideElement: HTMLElement): string {
+  const classList = slideElement.className;
+  if (classList.includes("bg-bg-dark") || classList.includes("bg-brand-blue")) {
+    return "#ffffff";
+  }
+  return "#0f172a";
+}
+
+// PDF 헤더 요소 생성
+function createPdfHeader(color: string): HTMLDivElement {
+  const header = document.createElement("div");
+  header.id = "pdf-injected-header";
+  header.style.cssText = `
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 60px;
+    padding: 16px 40px;
+    display: flex;
+    align-items: center;
+    z-index: 9999;
+    background: transparent;
+    color: ${color};
+    pointer-events: none;
+  `;
+  header.innerHTML = `
+    <div style="display: flex; flex-direction: column;">
+      <h1 style="font-size: 24px; font-weight: 900; letter-spacing: -0.05em; line-height: 1; margin: 0; color: inherit;">
+        Terra<span style="opacity: 0.7;">Link</span>
+      </h1>
+      <span style="font-size: 10px; opacity: 0.6; letter-spacing: 0.2em; margin-top: 4px; font-weight: 500;">SURVEY CLOUD PLATFORM</span>
+    </div>
+  `;
+  return header;
+}
 
 export async function downloadPDF() {
   const slides = document.querySelectorAll(".pdf-target");
@@ -14,30 +50,22 @@ export async function downloadPDF() {
   }
 
   // html-to-image의 btoa Unicode 이슈 해결을 위한 Monkey Patch
-  // 한글 등 유니코드 문자가 포함된 DOM을 SVG로 변환할 때 btoa가 오류를 발생시키는 것을 방지합니다.
   const originalBtoa = window.btoa;
   window.btoa = (str) => {
     try {
       return originalBtoa(str);
     } catch (err) {
-      // 유니코드를 UTF-8 바이트 문자열로 변환 후 Base64 인코딩
       return originalBtoa(unescape(encodeURIComponent(str)));
     }
   };
 
   const totalSlides = slides.length;
+  console.log(`PDF 생성 시작: 총 ${totalSlides}개 슬라이드`);
 
   try {
-    // 폰트 로딩 대기 (아이콘 누락 방지)
     await document.fonts.ready;
 
-    // 첫 번째 슬라이드 기준으로 PDF 크기 설정
-    const firstSlide = slides[0] as HTMLElement;
-    const slideWidth = firstSlide.scrollWidth;
-    const slideHeight = firstSlide.scrollHeight;
-    const aspectRatio = slideWidth / slideHeight;
-
-    // A4 가로(Landscape) 규격: 297mm x 210mm
+    // A4 가로(Landscape) 규격
     const pdfWidth = 297;
     const pdfHeight = 210;
 
@@ -49,65 +77,97 @@ export async function downloadPDF() {
 
     for (let i = 0; i < totalSlides; i++) {
       const slide = slides[i] as HTMLElement;
+      console.log(`슬라이드 ${i + 1}/${totalSlides} 처리 중...`);
 
-      // 폰트 렌더링 안정화를 위한 짧은 대기
-      await new Promise((resolve) => setTimeout(resolve, 300));
-
-      // PDF 캡처 전: 인쇄용 헤더 강제 표시 (!important 우선순위 오버라이드)
-      const printHeader = slide.querySelector(
-        ".print-header-force",
-      ) as HTMLElement;
-      if (printHeader) {
-        printHeader.style.setProperty("display", "flex", "important");
+      // 표지(첫 페이지)가 아닌 경우에만 헤더 삽입
+      let injectedHeader: HTMLDivElement | null = null;
+      if (i > 0) {
+        const headerColor = getHeaderColor(slide);
+        injectedHeader = createPdfHeader(headerColor);
+        slide.appendChild(injectedHeader);
       }
 
-      // DOM 업데이트 및 레이아웃 재계산을 위한 대기
-      await new Promise((resolve) => setTimeout(resolve, 100));
+      // DOM 업데이트 대기
+      await new Promise((resolve) => setTimeout(resolve, 200));
 
-      // html-to-image를 사용하여 이미지 생성
-      // JPEG 포맷을 사용하여 용량 최적화 (quality: 0.8)
+      // 원본 슬라이드 직접 캡처
+      const slideWidth = slide.scrollWidth || 1440;
+      const slideHeight = slide.scrollHeight || 900;
+
       const dataUrl = await toPng(slide, {
-        quality: 0.8,
-        pixelRatio: 1.5, // 2.0 -> 1.5로 하향 조정하여 용량 감소
-        backgroundColor: "#ffffff",
-        cacheBust: false,
+        quality: 0.9,
+        pixelRatio: 2,
+        cacheBust: true,
         width: slideWidth,
         height: slideHeight,
-        style: {
-          transform: "scale(1)",
-          transformOrigin: "top left",
-          width: `${slideWidth}px`,
-          height: `${slideHeight}px`,
-        },
       });
 
-      // PDF 캡처 후: 인쇄용 헤더 다시 숨기기
-      if (printHeader) {
-        printHeader.style.removeProperty("display");
+      // 캡처 후 헤더 제거
+      if (injectedHeader) {
+        injectedHeader.remove();
       }
 
-      // 첫 페이지는 이미 생성되어 있으므로 두 번째부터 추가
+      // 첫 페이지가 아니면 새 페이지 추가
       if (i > 0) {
         pdf.addPage([pdfWidth, pdfHeight], "l");
       }
 
-      // 이미지 비율 계산하여 PDF에 꽉 차게 넣기
-      // JPEG 압축 적용 (이미지 자체는 PNG로 캡처하더라도 PDF 삽입 시 압축 가능)
+      // 비율 유지하면서 A4에 맞추기 위한 계산
+      const imageAspectRatio = slideWidth / slideHeight; // 1440/900 = 1.6
+      const pageAspectRatio = pdfWidth / pdfHeight; // 297/210 = 1.414
+
+      let scaledWidth: number;
+      let scaledHeight: number;
+      let xOffset: number;
+      let yOffset: number;
+
+      if (imageAspectRatio > pageAspectRatio) {
+        // 이미지가 페이지보다 넓음 → 가로폭 맞추고 세로 비례 계산
+        scaledWidth = pdfWidth;
+        scaledHeight = pdfWidth / imageAspectRatio;
+        xOffset = 0;
+        yOffset = (pdfHeight - scaledHeight) / 2;
+      } else {
+        // 이미지가 페이지보다 좁거나 같음 → 세로 맞추고 가로 비례 계산
+        scaledHeight = pdfHeight;
+        scaledWidth = pdfHeight * imageAspectRatio;
+        xOffset = (pdfWidth - scaledWidth) / 2;
+        yOffset = 0;
+      }
+
+      // 배경색 채우기 (여백 영역)
+      // variant에 따른 배경색 결정
+      let bgColor = "#ffffff";
+      const classList = slide.className;
+      if (classList.includes("bg-bg-dark")) bgColor = "#0f172a";
+      else if (classList.includes("bg-brand-blue")) bgColor = "#005c9a";
+      else if (classList.includes("bg-bg-gray")) bgColor = "#f8f9fa";
+
+      // 전체 페이지를 배경색으로 채움
+      pdf.setFillColor(bgColor);
+      pdf.rect(0, 0, pdfWidth, pdfHeight, "F");
+
+      // 이미지를 비율 유지하며 중앙에 배치
       pdf.addImage(
         dataUrl,
         "PNG",
-        0,
-        0,
-        pdfWidth,
-        pdfHeight,
+        xOffset,
+        yOffset,
+        scaledWidth,
+        scaledHeight,
         undefined,
         "FAST",
+      );
+
+      console.log(
+        `슬라이드 ${i + 1} 완료 (${scaledWidth.toFixed(1)}x${scaledHeight.toFixed(1)}mm, offset: ${xOffset.toFixed(1)}, ${yOffset.toFixed(1)})`,
       );
     }
 
     // 파일 저장
     const timestamp = new Date().toISOString().slice(0, 10).replace(/-/g, "");
     pdf.save(`TerraLink_Proposal_${timestamp}.pdf`);
+    console.log(`PDF 생성 완료: ${totalSlides}페이지`);
   } catch (error) {
     console.error("PDF 생성 중 오류 발생:", error);
     alert(
@@ -164,7 +224,7 @@ export function downloadPPT() {
     color: "4da8c7",
     bold: true,
   });
-  slide2.addText("기존 측량 업무의 비효율성", {
+  slide2.addText("전통적인 측량 업무의 비효율성", {
     x: 0.5,
     y: 1.0,
     fontSize: 32,

@@ -8,7 +8,6 @@ export default function OutputsSlide() {
         { icon: FileSpreadsheet, label: 'Excel', desc: '스프레드시트', color: 'from-emerald-500 to-green-400' },
         { icon: Table2, label: 'CSV', desc: '범용 데이터', color: 'from-violet-500 to-purple-400' },
         { icon: FileText, label: 'TXT', desc: '텍스트 형식', color: 'from-slate-500 to-gray-400' },
-        { icon: Archive, label: 'ZIP', desc: '일괄 압축', color: 'from-amber-500 to-orange-400' }
     ];
 
     return (
@@ -68,7 +67,7 @@ export default function OutputsSlide() {
                         </div>
                         <p className="text-sm leading-relaxed text-white/60">
                             측량 장비에서 획득한 원시 데이터를 가공하여<br />
-                            다양한 CAD 및 GIS 소프트웨어용으로 변환합니다.
+                            TXT, CSV 포맷으로 제공합니다.
                         </p>
                     </div>
                 </div>

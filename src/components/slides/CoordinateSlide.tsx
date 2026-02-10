@@ -1,13 +1,13 @@
 'use client';
 
 import React from 'react';
-import { MapPin } from 'lucide-react';
+import { MapPin, Settings, RefreshCw, LocateFixed } from 'lucide-react';
 
 export default function CoordinateSlide() {
     const coordinateSystems = [
-        { code: 'UTM-K', name: 'Korea 2000 / Unified CS', desc: '대한민국 통합 좌표계', color: 'from-brand-blue to-brand-cyan' },
-        { code: 'EPSG:5186', name: 'Korea 2000 / Central Belt', desc: '중부원점 좌표계', color: 'from-emerald-500 to-teal-500' },
-        { code: 'EPSG:5187', name: 'Korea 2000 / East Belt', desc: '동부원점 좌표계', color: 'from-violet-500 to-purple-500' }
+        { icon: Settings, name: '좌표계 설정', desc: '다양한 좌표계 지원으로 현장에 맞춘 설정이 가능합니다', color: 'from-brand-blue to-brand-cyan' },
+        { icon: RefreshCw, name: '좌표계 변환', desc: '설정된 좌표계를 기반한 변환작업이 가능합니다', color: 'from-emerald-500 to-teal-500' },
+        { icon: LocateFixed, name: '로칼 설정', desc: '로칼 좌표계 설정으로 정교한 측량 환경 설정이 가능합니다', color: 'from-violet-500 to-purple-500' }
     ];
 
     return (
@@ -35,8 +35,8 @@ export default function CoordinateSlide() {
                     <div className="flex flex-col gap-4">
                         {coordinateSystems.map((item, idx) => (
                             <div key={idx} className="flex items-center gap-4 p-5 bg-white/50 backdrop-blur-md rounded-2xl shadow-md border border-white/40 mb-1">
-                                <div className={`px-3 py-2 bg-linear-to-br ${item.color} rounded-xl text-white font-bold text-sm shrink-0 shadow-md`}>
-                                    {item.code}
+                                <div className={`p-3 bg-linear-to-br ${item.color} rounded-xl text-white shrink-0 shadow-md`}>
+                                    <item.icon className="w-5 h-5" />
                                 </div>
                                 <div>
                                     <h4 className="font-bold text-text-main mb-0.5">{item.name}</h4>

@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Smartphone, CloudUpload, Link2 } from 'lucide-react';
+import { Smartphone, CloudUpload, Link2, Toolbox } from 'lucide-react';
 
 export default function IntegrationSlide() {
 
@@ -30,7 +30,8 @@ export default function IntegrationSlide() {
                     <div className="flex flex-col gap-4">
                         {[
                             { icon: Smartphone, title: 'Perfect Compatibility', desc: 'TerraSurvey 2025 사용자라면 즉시 연결 가능', color: 'from-brand-blue to-sky-400' },
-                            { icon: CloudUpload, title: 'Real-time Sync', desc: '현장 관측과 동시에 사무실에서 데이터 확인', color: 'from-brand-cyan to-teal-400' }
+                            { icon: CloudUpload, title: 'Real-time Sync', desc: '현장 관측과 동시에 사무실에서 데이터 확인', color: 'from-brand-cyan to-teal-400' },
+                            { icon: Toolbox, title: '다양한 장비 호환', desc: 'TerraSurvey 2025 지원 측량 장비를 통해 관측된 모든 데이터가 실시간 동기화됩니다.', color: 'from-brand-orange to-orange-400' }
                         ].map((item, idx) => {
                             const Icon = item.icon;
                             return (

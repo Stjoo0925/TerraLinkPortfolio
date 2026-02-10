@@ -42,37 +42,11 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
-/* Print Header: Visible by default (for print), hidden on screen */
-.print-header-force {
-  display: flex;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  z-index: 9999;
-}
 
-/* Hide on screen display only */
-@media screen {
-  .print-header-force {
-    display: none !important;
-  }
-}
-
-/* Ensure visibility and colors on print */
+/* Print styles for browser print (Ctrl+P) */
 @media print {
   body {
     -webkit-print-color-adjust: exact !important;
     print-color-adjust: exact !important;
-  }
-
-  .print-header-force {
-    display: flex !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-  }
-
-  .print-text-safe {
-    color: #0f172a !important;
   }
 }

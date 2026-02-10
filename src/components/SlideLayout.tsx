@@ -111,15 +111,6 @@ export default function SlideLayout({
                 </div>
             )}
 
-            {/* Print Header (Visible only in Print/PDF) */}
-            <div className="print-header-force absolute top-0 left-0 w-full items-start p-10 z-[100] print-text-safe">
-                <div className="flex flex-col">
-                    <h1 className="text-2xl font-black tracking-tighter leading-none">
-                        Terra<span className={variant === 'default' ? 'text-brand-cyan' : 'opacity-70'}>Link</span>
-                    </h1>
-                    <span className="text-[10px] opacity-60 tracking-[0.2em] mt-1 font-medium">SURVEY CLOUD PLATFORM</span>
-                </div>
-            </div>
 
             <div className="container mx-auto relative z-10 w-full max-w-[1400px]">
                 {children}
